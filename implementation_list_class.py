@@ -72,6 +72,8 @@ class array:
             print(f"{value} is not in list, please enter another index")
 
     def max(self): #Return maximum
+        # solution 1:
+        # in this solution we used for loop and considered max= 0
         index=0
         while index < len(self._args_list):
             max= 0
@@ -80,16 +82,35 @@ class array:
             index += 1
         return max
 
+        # solution 2:
+        # in this solution we used for loop and considered max= self._args_list[0]
+        # max= self._args_list[0]
+        # for i in range(0,len(self._args_list)):
+        #     if self._args_list[i] > max:
+        #         max= self._args_list[i]
+        # return max
+
+        # solution 3:
+        # in this solution we used while loop and considered max= 0
+        # index=0
+        # while index < len(self._args_list):
+        #     max= 0
+        #     if max < self._args_list[index]:
+        #         max= self._args_list[index]
+        #     index += 1
+        # return max
+
     def intersection_points(self):
         # solution 1:
         [[self._intersection.append(item) for value in self._list if item == value] for item in self._args_list]
+        print(f"intersection array with list: {self._intersection}")
 
         # solution 2:
         # for item in self._args_list:
         #     for value in self._list:
         #         if item == value:
         #             self._intersection.append(item)
-        print(f"intersection array with list: {self._intersection}")
+        # print(f"intersection array with list: {self._intersection}")
                     
     def show_array(self):
         print(self._args_list)
