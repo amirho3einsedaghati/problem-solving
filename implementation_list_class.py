@@ -7,14 +7,17 @@ class array:
         self._list= []
         self._intersection= [] 
 
+
     def append(self, item): #Append the item to the end of the list.
         self._args_list= self._args_list.__add__([0])
         self._args_list[len(self._args_list)-1] = item
+
 
     def extend(self,__Iterable: Iterable[int]): #Extend list by appending elements from the iterable and add elements to the end of the list 
         for item in __Iterable:
             self._args_list= self._args_list.__add__([0])
             self._args_list[len(self._args_list) - 1]= item
+
 
     def insert(self, index: int, item:object): #Add item to the recieved index
         if 0 <= index < len(self._args_list):
@@ -34,14 +37,6 @@ class array:
             self._args_list= self._args_list.__add__([0])
             self._args_list[index]= item
 
-    def append_or_extend_to_list(self, item):
-        if type(item) == str or type(item) == list or type(item) == tuple:
-            for value in item:
-                self._list= self._list.__add__([0])
-                self._list[len(self._list) - 1]= value
-        else:
-            self._list= self._list.__add__([0])
-            self._list[len(self._list)-1] = item
 
     def pop(self, index: int): #Remove and return item at index 
         try:
@@ -51,6 +46,7 @@ class array:
             print(f"the index must be: index < {len(self._args_list)}, please enter another index")
         else:
             return deleted_of_list
+
 
     def reverse(self): #Reverse the items of the list
         # solution 1:
@@ -62,6 +58,7 @@ class array:
         #     items.append(self._args_list[i]) 
         # self._args_list= items
 
+
     def index(self,value): #Return first index of value.
         if value in self._args_list:
             lenght= len(self._args_list) 
@@ -70,6 +67,7 @@ class array:
                     return f"index of the received value: {i}"
         else:
             print(f"{value} is not in list, please enter another index")
+
 
     def max(self): #Return maximum
         # solution 1:
@@ -100,27 +98,57 @@ class array:
         #     index += 1
         # return max
 
-    def intersection_points(self):
-        # solution 1:
-        [[self._intersection.append(item) for value in self._list if item == value] for item in self._args_list]
-        print(f"intersection array with list: {self._intersection}")
+
+# ============================================= Implementation Intersect method in list class ==========================================    
+# solution 1:   
+# big O(n) 
+
+    def intersection_points(self,li: list):
+        for item in self._args_list:
+            if item in li:
+                self._intersection.append(item)
+        return f"intersection array with list: {self._intersection}"
+
+# ----------------------
+# solution 2:
+# big O(n^2)
+
+    def append_or_extend_to_list(self, item):
+        if type(item) == str or type(item) == list or type(item) == tuple:
+            for value in item:
+                self._list= self._list.__add__([0])
+                self._list[len(self._list) - 1]= value
+        else:
+            self._list= self._list.__add__([0])
+            self._list[len(self._list)-1] = item
+
+    # def intersection_points(self):
+    #     # solution 1:
+    #     # in this solution we used list comprehension
+    #     [[self._intersection.append(item) for value in self._list if item == value] for item in self._args_list]
+    #     return f"intersection array with list: {self._intersection}"
 
         # solution 2:
+        # in this solution we used nested for
         # for item in self._args_list:
         #     for value in self._list:
         #         if item == value:
         #             self._intersection.append(item)
-        # print(f"intersection array with list: {self._intersection}")
-                    
+        # return f"intersection array with list: {self._intersection}"
+
+# ========================================   
+
     def show_array(self):
         print(self._args_list)
         # for item in self._args_list:
         #     print(item)
 
+
     def show_list(self):
         print(self._list)
       
-# instance exercise:
+# ============================================================== excercise with create instance =====================================       
+
 instance= array()
 instance.append(10)
 instance.append(20)
@@ -131,6 +159,7 @@ instance.append(50)
 instance.show_array()
 instance.reverse()
 instance.show_array()
+
 # # print("=====================")
 # instance.pop(50)
 x=instance.pop(1) # akharin item ro hazf mikonad
@@ -138,6 +167,7 @@ x=instance.pop(1) # akharin item ro hazf mikonad
 instance.show_array()
 # # instance.index(20)
 # # instance.index(200)
+
 # # # print("=====================")
 # # # instance.show_array()
 # # # print(instance.max())
@@ -145,7 +175,9 @@ instance.show_array()
 # # instance.append_or_extend_to_list(100)
 # # # instance.show_array()
 # # instance.show_list()
-# # instance.intersection_points()
+# # print(instance.intersection_points())
+
+print(instance.intersection_points([20,12,34,10,50,28]))
 
 instance.insert(0,7)
 instance.show_array()
@@ -158,3 +190,5 @@ instance.show_array()
 
 instance.insert(8,24)
 instance.show_array()
+
+# print(instance.max())
