@@ -48,7 +48,7 @@ class array:
             return deleted_of_list
 
 
-    def reverse(self): #Reverse the items of the list
+    def reverse(self): # reverse the main list (self._args_list)
         # solution 1:
         self._args_list= self._args_list[::-1]
 
@@ -58,6 +58,22 @@ class array:
         #     items.append(self._args_list[i]) 
         # self._args_list= items
 
+        # solution 3:
+        # n= len(self._args_list)
+        # past index= 0   1   2   3   4
+        # past index == new index
+        # new index= n-5  n-4 n-3 n-2 n-1    
+        #            [1 , 2 , 3 , 4 , 5]    ->  reversed:[5 , 4 , 3 , 2 , 1] 
+        # how to reach the 'reversed' ingredients?
+        # if we want to reach the second item of 'self._args_list' at 'reversed' list:  past index: 1    ,   new index: n - 4  => answer: new index= n - (i + 1)
+
+        # items= []
+        # count= len(self._args_list)
+        # for i in range(0,count):
+        #     reversed= self._args_list[count - i - 1]
+        #     items.append(reversed)
+
+        # self._args_list= items
 
     def index(self,value): #Return first index of value.
         if value in self._args_list:
