@@ -15,22 +15,21 @@ class linkedList:
 
     # setter
     def SetLinkedList(self, val=None):
-        if val == None:
-            self= self.head
-            global linkedLi
-            linkedLi= []
-            while self is not None: # in the previous Traverses self was an object of node class
-                linkedLi.append(self.value)
-                # print(self.value) # the command is for traversing linked-list nodes
-                self= self.address # in the last iterate is set None for self.address
-        else:
-            linkedLi= val
-    
+        self= self.head
+        global linkedLi
+        linkedLi= []
+        while self is not None: # in the previous Traverses self was an object of node class
+            linkedLi.append(self.value)
+            # print(self.value) # the command is for traversing linked-list nodes
+            self= self.address # in the last iterate is set None for self.address
+
+
     def contains(self,value):
         if value in linkedLi:
             return "True"
         else:
             return "False"
+
 
     def indexOf(self,value):
         if value in linkedLi:
@@ -40,29 +39,14 @@ class linkedList:
         else:
             return f"ValueError: {value} is not in list, please enter another value" 
 
-    def resize(self, item): # this is a private method 
-        resizedList= [""]
-        if type(item) == int or type(item) == int:
-            size= len(linkedLi)
-            size += 1 
-            resizedList *= size
-            return resizedList
 
     def addFirst(self,node):
         # solution 1: with use of Node class
         newNode= Node(node)
         newNode.address= self.head
         self.head= newNode
-        
-        # solution 2: without use of Node class and with use of resize method
-        # res= self.resize(node)
-        # for i in range(0, len(res)):
-        #     if i == 0:
-        #         res[i] = node
-        #     elif 0 < i <= len(res) - 1:
-        #         res[i]= linkedLi[i - 1]
-        # self.SetLinkedList(res)
-             
+
+
     def addLast(self,node):
         # solution 1: with use of Node class
         newNode= Node(node)
@@ -76,21 +60,29 @@ class linkedList:
             isNode= isNode.address
         isNode.address= newNode
 
-        # solution 2:
-        # res= self.resize(node)
-        # for i in range(0, len(res)):
-        #     if 0 <= i <= len(res) - 2:
-        #         res[i]= linkedLi[i]
-        #     elif i == len(res) - 1:
-        #         res[i] = node
-        # self.SetLinkedList(res)
 
-    def deleteFirst(self, node):
-        if node not in linkedLi:
-            print(f"the node of {node} is not in the linked-list")
+    def deleteFirst(self):
+        if self.head == None: # if linked-list was empty
+            print(f"there is no node in the linked-list")
         else:
-            pass
+            deletedNode= self.head
+            self.head= deletedNode.address
+    
 
+    def deleteLast(self):
+        if self.head == None: # if linked-list was empty
+            print(f"there is no node in the linked-list")
+        else:
+            # nextNode= self.head
+            deletedNode= self.head
+            # self.head= deletedNode.address
+            while deletedNode.address != None:
+                # previous node 
+                previNode= deletedNode
+                # new node
+                deletedNode= deletedNode.address
+
+            previNode.address= deletedNode.address
 
 
 # ===================================================== create objects ============================================
@@ -123,22 +115,20 @@ print(first.GetlinkedList())
 # print(first.contains(10))
 # print(first.contains(100))
 
-# calling in solution 1 for addFirst() method:
+# calling solution 1 for addFirst() method:
 first.addFirst(0)
 first.SetLinkedList()
 print(first.GetlinkedList())
-
-# calling solution 2 for addFirst() method:
-# first.addFirst(0)
-# print(first.GetlinkedList())
 
 # calling solution 1 for addLast() method:
 first.addLast(40)
 first.SetLinkedList()
 print(first.GetlinkedList())
 
-# calling solution 2 for addLast() method:
-first.addLast(40)
-print(first.GetlinkedList())
+# first.deleteFirst()
+# first.SetLinkedList()
+# print(first.GetlinkedList())
 
-# first.deleteFirst(100)
+# first.deleteLast()
+# first.SetLinkedList()
+# print(first.GetlinkedList())
