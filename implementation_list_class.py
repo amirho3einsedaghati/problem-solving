@@ -119,15 +119,18 @@ class array:
 
     def reverse(self): # reverse the main list (self._args_list)
         # solution 1:
+        # with use of []
         self._args_list= self._args_list[::-1]
 
         # solution 2:
+        # with use of .append()
         # items= []
         # for i in range(len(self._args_list)-1, -1, -1):
         #     items.append(self._args_list[i]) 
         # self._args_list= items
 
         # solution 3:
+        # without use of .appned()
         # n= len(self._args_list)
         # past index= 0   1   2   3   4
         # past index == new index
@@ -136,11 +139,12 @@ class array:
         # how to reach the 'reversed' ingredients?
         # if we want to reach the second item of 'self._args_list' at 'reversed' list:  past index: 1    ,   new index: n - 4  => answer: new index= n - (i + 1)
 
-        # items= []
+        # items= [""]
         # count= len(self._args_list)
-        # for i in range(0,count):
+        # items *= count
+        # for i in range(0,count): 
         #     reversed= self._args_list[count - i - 1]
-        #     items.append(reversed)
+        #     items[i]= reversed
 
         # self._args_list= items
 
@@ -157,7 +161,7 @@ class array:
 
     def max(self): #Return maximum
         # solution 1:
-        # in this solution we used for loop and considered max= 0
+        # in this solution we used while loop and considered max= 0
         index=0
         while index < len(self._args_list):
             max= 0
@@ -175,13 +179,11 @@ class array:
         # return max
 
         # solution 3:
-        # in this solution we used while loop and considered max= 0
-        # index=0
-        # while index < len(self._args_list):
-        #     max= 0
-        #     if max < self._args_list[index]:
-        #         max= self._args_list[index]
-        #     index += 1
+        # in this solution we used for loop and considered max= 0
+        # max= 0
+        # for i in range(0,len(self._args_list)):
+        #     if max < self._args_list[i]:
+        #         max= self._args_list[i]
         # return max
 
 
@@ -232,15 +234,11 @@ class array:
 
 # ========================================   
 
-    def show_array(self):
+    def show_list(self):
         print(self._args_list)
         # for item in self._args_list:
         #     print(item)
 
-
-    def show_list(self):
-        print(self._list)
-      
 # ============================================================== excercise with create instance =====================================       
 
 instance= array()
@@ -249,44 +247,45 @@ instance.append(20)
 instance.append(30)
 instance.append(40)
 instance.append(50)
-instance.extend([60,70,80,90,120,"a"])
-instance.show_array()
+instance.extend([60,70,80,90,120])
+instance.show_list()
 
 # instance.reverse()
-# instance.show_array()
+# instance.show_list()
 
 # # # print("=====================")
 # # instance.pop(50)
 # # instance.pop(1) # akharin item ro hazf mikonad
-# # instance.show_array()
+# # instance.show_list()
 # # # print(instance.index(20))
 # # # print(instance.index(200)
 
 # # # # print("=====================")
-# # # # instance.show_array()
-# # print(instance.max())
+# # # # instance.show_list()
+print(instance.max())
+
 # instance.append_or_extend_to_list([20,12,34,10,50,28])
 # instance.append_or_extend_to_list(100)
-# instance.show_array()
-# # # instance.show_list()
+# instance.show_list()
+
 # print(instance.intersection_points([20,12,34,10,50,28]))
 
-instance.insert(13,7)
-instance.show_array()
+instance.insert(7,7)
+instance.show_list()
 
 # instance.insert(12,77)
-# instance.show_array()
+# instance.show_list()
 
 # instance.insert(0,88)
-# instance.show_array()
+# instance.show_list()
 
 # instance.insert(7,24)
-# instance.show_array()
+# instance.show_list()
 
 # # print(instance.max())
 
 # instance.remove(1000)
-# instance.show_array()
+# instance.show_list()
 
 # instance.remove("a")
-# instance.show_array()
+# instance.show_list()
