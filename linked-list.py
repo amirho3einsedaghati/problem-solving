@@ -40,6 +40,14 @@ class linkedList(Node):
             return f"ValueError: {value} is not in list, please enter another value" 
 
 
+    def isEmpty(self):
+        return self.head == None
+
+
+    def toLastNode(self, inp):
+        return inp.address is not None
+
+
     def addFirst(self,node):
         # solution 1: with use of Node class
         newNode= Node(node)
