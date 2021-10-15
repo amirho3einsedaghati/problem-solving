@@ -5,7 +5,7 @@ class Node:
         self.value= value
         self.address= None
         
-class linkedList:
+class linkedList(Node):
     def __init__(self):
         self.head= None
 
@@ -47,6 +47,22 @@ class linkedList:
         self.head= newNode
 
 
+    def addBetween(self, newVal, availableNode):
+        userNode= Node(newVal)
+        if len(linkedLi) < 2:
+            print(f"OPPs!! you should add at least 2 nodes to the linked-list, now the count of nodes is {len(linkedLi)}")
+        elif availableNode in linkedLi:
+            newNode= self.head
+            while newNode.value is not availableNode:
+                previNode= newNode
+                newNode= newNode.address
+        
+            previNode.address= userNode
+            userNode.address= newNode
+        else:
+            print(f"the value of {availableNode} is not in the linked-list")
+
+
     def addLast(self,node):
         # solution 1: with use of Node class
         newNode= Node(node)
@@ -67,6 +83,18 @@ class linkedList:
         else:
             deletedNode= self.head
             self.head= deletedNode.address
+
+
+    def deleteBetween(self, node):
+        if self.head == None: # if linked-list was empty
+            print(f"there is no node in the linked-list")
+
+        newNode= self.head
+        while newNode.value is not node:
+            previNode= newNode
+            newNode= newNode.address
+        nextNode= newNode.address
+        previNode.address= nextNode   
     
 
     def deleteLast(self):
@@ -120,15 +148,33 @@ first.addFirst(0)
 first.SetLinkedList()
 print(first.GetlinkedList())
 
+# calling wrong solution for addFirst() method:
+# first.addFirst(0)
+# print(first.GetlinkedList())
+
 # calling solution 1 for addLast() method:
 first.addLast(40)
 first.SetLinkedList()
 print(first.GetlinkedList())
 
-# first.deleteFirst()
-# first.SetLinkedList()
+# calling wrong solution for addLast() method:
+# first.addLast(40)
 # print(first.GetlinkedList())
 
-# first.deleteLast()
-# first.SetLinkedList()
-# print(first.GetlinkedList())
+first.deleteFirst()
+first.SetLinkedList()
+print(first.GetlinkedList())
+
+first.deleteLast()
+first.SetLinkedList()
+print(first.GetlinkedList())
+
+first.deleteBetween(20)
+first.SetLinkedList()
+print(first.GetlinkedList())
+
+first.addBetween(20,40)
+
+first.addBetween(20,30)
+first.SetLinkedList()
+print(first.GetlinkedList())
