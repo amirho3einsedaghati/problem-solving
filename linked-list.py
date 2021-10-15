@@ -9,13 +9,15 @@ class linkedList(Node):
     def __init__(self):
         self.head= None
 
+
     # getter
-    def GetlinkedList(self):
+    def GetlinkedList(self): # return a setted value
         return linkedLi
 
+
     # setter
-    def SetLinkedList(self, val=None):
-        self= self.head
+    def SetLinkedList(self): # update and create a linked-list
+        self= self.createNewNode()
         global linkedLi
         linkedLi= []
         while self is not None: # in the previous Traverses self was an object of node class
@@ -48,19 +50,30 @@ class linkedList(Node):
         return inp.address is not None
 
 
+    def createNewNode(self):
+        node= self.head
+        return node
+
+
     def addFirst(self,node):
         # solution 1: with use of Node class
         newNode= Node(node)
+        # the blow command checks linked-list is empty or not
+        if self.isEmpty():
+            self.head= newNode
+        # if was not empty 
+        # first we have to create address pointer based-on a node
         newNode.address= self.head
+        # then change the value of head.
         self.head= newNode
 
 
     def addBetween(self, newVal, availableNode):
         userNode= Node(newVal)
         if len(linkedLi) < 2:
-            print(f"OPPs!! you should add at least 2 nodes to the linked-list, now the count of nodes is {len(linkedLi)}")
+            print(f"OPPs!! you should first add at least 2 nodes to the linked-list; now the count of nodes is {len(linkedLi)}")
         elif availableNode in linkedLi:
-            newNode= self.head
+            newNode= self.createNewNode()
             while newNode.value is not availableNode:
                 previNode= newNode
                 newNode= newNode.address
@@ -71,18 +84,19 @@ class linkedList(Node):
             print(f"the value of {availableNode} is not in the linked-list")
 
 
-    def addLast(self,node):
+    def addLast(self,nodeVal):
         # solution 1: with use of Node class
-        newNode= Node(node)
+        newNode= Node(nodeVal)
         # the blow command checks linked-list is empty or not
-        if self.head == None:
+        if self.isEmpty():
             self.head= newNode
         # if was not empty
          # we sure at least we have a item  in the linked-list
-        isNode= self.head
-        while isNode.address:
-            isNode= isNode.address
-        isNode.address= newNode
+        node= self.createNewNode()
+        while self.toLastNode(node):
+            node= node.address
+
+        node.address= newNode
 
 
     def deleteFirst(self):
@@ -97,12 +111,13 @@ class linkedList(Node):
         if self.head == None: # if linked-list was empty
             print(f"there is no node in the linked-list")
 
-        newNode= self.head
+        newNode= self.createNewNode()
         while newNode.value is not node:
             previNode= newNode
             newNode= newNode.address
+
         nextNode= newNode.address
-        previNode.address= nextNode   
+        previNode.address= nextNode  
     
 
     def deleteLast(self):
@@ -110,15 +125,15 @@ class linkedList(Node):
             print(f"there is no node in the linked-list")
         else:
             # nextNode= self.head
-            deletedNode= self.head
+            node= self.createNewNode()
             # self.head= deletedNode.address
-            while deletedNode.address != None:
+            while self.toLastNode(node):
                 # previous node 
-                previNode= deletedNode
+                previNode= node
                 # new node
-                deletedNode= deletedNode.address
+                node= node.address
 
-            previNode.address= deletedNode.address
+            previNode.address= node.address
 
 
 # ===================================================== create objects ============================================
