@@ -33,15 +33,23 @@ class linkedList(Node):
             return "False"
 
 
+    # we need first create index for Nodes then we should check node.value with received value, if they was equal; return the index
     def indexOf(self,value):
         if value in linkedLi:
-            for i in range(0,len(linkedLi)):
-                if linkedLi[i] == value:
-                    return i 
-        else:
-            return f"ValueError: {value} is not in list, please enter another value" 
+            index= 0
+            node= self.createBackupHead()
+            while self.toLastNode(node):
+                if node.value is value:
+                    return index
 
+                node= node.address
+                index += 1
 
+            return index
+
+        return f"ValueError: {value} is not in list, please enter another value" 
+
+   
     def isEmpty(self):
         return self.head == None
 
