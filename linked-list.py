@@ -115,9 +115,17 @@ class linkedList(Node):
         if self.head == None: # if linked-list was empty
             print(f"there is no node in the linked-list")
         else:
-            deletedNode= self.head
+            # [10 -> 20 -> 30 -> 40]
+            # our expected after the execution of program: [20 -> 30 -> 40]
+            # in this solution the address of the first node is automatically set with Node
+            deletedNode= self.createBackupHead()
             self.head= deletedNode.address
 
+            # solution 2: we delete the field of the address of the first Node 
+            # deletedNode= self.head.address
+            # self.head.address= None
+            # self.head= deletedNode
+    
 
     def deleteBetween(self, node):
         if self.head == None: # if linked-list was empty
