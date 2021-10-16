@@ -27,10 +27,14 @@ class linkedList(Node):
 
 
     def contains(self,value):
-        if value in linkedLi:
-            return "True"
-        else:
-            return "False"
+        # solution 1: with use of indexOf method
+        return type(self.indexOf(value)) == int 
+
+        # solution 2: with use of linkedLi
+        # if value in linkedLi:
+        #     return "True"
+        # else:
+        #     return "False
 
 
     # we need first create index for Nodes then we should check node.value with received value, if they was equal; return the index
@@ -145,7 +149,9 @@ class linkedList(Node):
 # ===================================================== create objects ============================================
 
 first= linkedList()
-# we must set a value for self.head because the value of self.head is None in the class.
+
+# we should set a value for self.head because the value of self.head is None in the class and we have to add a node to the linked-list;
+#  or we have to use the addFirst or addLast methods. 
 first.head= Node(10) # we set a new value for self.head
 
 second= Node(20)
