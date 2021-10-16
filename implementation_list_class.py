@@ -11,18 +11,19 @@ class array:
     def resize(self, item): # this is a private method 
         resizedList= [""]
         if type(item) == int:
-            size= len(self._args_list)
+            size= self.lenght(self._args_list)
             size += 1 
             resizedList *= size
             return resizedList
         elif type(item) == list or type(item) == str or type(item) == tuple:
             itemSize= len(item)
-            size= len(self._args_list)
+            size= self.lenght(self._args_list)
             size += itemSize
             resizedList *= size
             return resizedList
 
-
+    def lenght(self, li: list): # we suppose this method is a private method 
+        return len(li)
 
     def append(self, item):
         # solution 1: without use of ".__add__()"
@@ -36,7 +37,7 @@ class array:
 
         # solution 2: with use of ".__add__()"
         # self._args_list= self._args_list.__add__([0])
-        # self._args_list[len(self._args_list)-1] = item
+        # self._args_list[self.lenght(self._args_list)-1] = item
 
 
 
@@ -45,9 +46,9 @@ class array:
         res= self.resize(__Iterable)
         index= 0
         for i in range(0, len(res)):
-            if i < len(self._args_list):
+            if i < self.lenght(self._args_list):
                 res[i] = self._args_list[i]
-            elif len(self._args_list) <= i <= len(res) -1:
+            elif self.lenght(self._args_list) <= i <= len(res) -1:
                 res[i]= __Iterable[index]
                 index += 1
         self._args_list= res
@@ -55,7 +56,7 @@ class array:
         # solution 2: with use of ".__add__()"
         # for item in __Iterable:
         #     self._args_list= self._args_list.__add__([0])
-        #     self._args_list[len(self._args_list) - 1]= item
+        #     self._args_list[self.lenght(self._args_list) - 1]= item
 
 
 
@@ -63,12 +64,12 @@ class array:
          # solution 1: without use of ".__add__()"
         self.append(item) # we are working on such a example list: self._args_list= [1,2,3,4,5,""]
 
-        if index >= len(self._args_list):
-            print(f"the index is out of range, the index must be between 0 and {len(self._args_list) - 1}")
+        if index >= self.lenght(self._args_list):
+            print(f"the index is out of range, the index must be between 0 and {self.lenght(self._args_list) - 1}")
 
-        elif 0 <= index < len(self._args_list):
-            for i in range(len(self._args_list)-1, index, -1):
-                if index <= len(self._args_list) - 2: # if the user has seen this [1,2,3,4,5] and want to add an item to the last index or previous index, the below commands are run.
+        elif 0 <= index < self.lenght(self._args_list):
+            for i in range(self.lenght(self._args_list)-1, index, -1):
+                if index <= self.lenght(self._args_list) - 2: # if the user has seen this [1,2,3,4,5] and want to add an item to the last index or previous index, the below commands are run.
                     copy= self._args_list[i - 1]
                     self._args_list[i - 1]= self._args_list[i]
                     self._args_list[i]= copy
@@ -77,24 +78,24 @@ class array:
                         # copy= self._args_list[index + 1]
                         self._args_list[index]= item
                         # self._args_list[index]= copy
-                elif index == len(self._args_list) - 1: # if the user has seen this [1,2,3,4,5] and want to add an item to the len(self._args_list), the below commands are run.
+                elif index == self.lenght(self._args_list) - 1: # if the user has seen this [1,2,3,4,5] and want to add an item to the self.lenght(self._args_list), the below commands are run.
                     self._args_list[index]= item
 
         # solution 2: with use of ".__add__()"           
-        # if 0 <= index < len(self._args_list):
-        #     for i in range(len(self._args_list)-1, index-1, -1):
-        #         if i == len(self._args_list) - 1:
+        # if 0 <= index < self.lenght(self._args_list):
+        #     for i in range(self.lenght(self._args_list)-1, index-1, -1):
+        #         if i == self.lenght(self._args_list) - 1:
         #             copy= self._args_list[i]
         #             self._args_list[i]= 0
         #             self._args_list= self._args_list.__add__([copy])
         #             self._args_list[i]= item
-        #         elif i != len(self._args_list) - 1:
+        #         elif i != self.lenght(self._args_list) - 1:
         #             copy= self._args_list[i]
         #             self._args_list[i]= 0
         #             self._args_list[i + 1]= copy
         #             if self._args_list[index] == 0:
         #                 self._args_list[index]= item
-        # elif index == len(self._args_list):
+        # elif index == self.lenght(self._args_list):
         #     self._args_list= self._args_list.__add__([0])
         #     self._args_list[index]= item
 
@@ -104,7 +105,7 @@ class array:
             deleted_of_list= self._args_list[index]
             self._args_list.__delitem__(index)
         except IndexError:
-            print(f"the index must be: index < {len(self._args_list)}, please enter another index")
+            print(f"the index must be: index < {self.lenght(self._args_list)}, please enter another index")
         else:
             return deleted_of_list
 
@@ -125,13 +126,13 @@ class array:
         # solution 2:
         # with use of .append()
         # items= []
-        # for i in range(len(self._args_list)-1, -1, -1):
+        # for i in range(self.lenght(self._args_list)-1, -1, -1):
         #     items.append(self._args_list[i]) 
         # self._args_list= items
 
         # solution 3:
         # without use of .appned()
-        # n= len(self._args_list)
+        # n= self.lenght(self._args_list)
         # past index= 0   1   2   3   4
         # past index == new index
         # new index= n-5  n-4 n-3 n-2 n-1    
@@ -140,7 +141,7 @@ class array:
         # if we want to reach the second item of 'self._args_list' at 'reversed' list:  past index: 1    ,   new index: n - 4  => answer: new index= n - (i + 1)
 
         # items= [""]
-        # count= len(self._args_list)
+        # count= self.lenght(self._args_list)
         # items *= count
         # for i in range(0,count): 
         #     reversed= self._args_list[count - i - 1]
@@ -151,7 +152,7 @@ class array:
 
     def index(self,value):
         if value in self._args_list:
-            lenght= len(self._args_list) 
+            lenght= self.lenght(self._args_list) 
             for i in range(0,lenght):
                if self._args_list[i] is value:
                     return i
@@ -163,7 +164,7 @@ class array:
         # solution 1:
         # in this solution we used while loop and considered max= 0
         index=0
-        while index < len(self._args_list):
+        while index < self.lenght(self._args_list):
             max= 0
             if max < self._args_list[index]:
                 max= self._args_list[index]
@@ -173,7 +174,7 @@ class array:
         # solution 2:
         # in this solution we used for loop and considered max= self._args_list[0]
         # max= self._args_list[0]
-        # for i in range(0,len(self._args_list)):
+        # for i in range(0,self.lenght(self._args_list)):
         #     if self._args_list[i] > max:
         #         max= self._args_list[i]
         # return max
@@ -181,13 +182,13 @@ class array:
         # solution 3:
         # in this solution we used for loop and considered max= 0
         # max= 0
-        # for i in range(0,len(self._args_list)):
+        # for i in range(0,self.lenght(self._args_list)):
         #     if max < self._args_list[i]:
         #         max= self._args_list[i]
         # return max
 
 
-# ============================================= Implementation Intersect method in list class ==========================================    
+# ============================================= Implementation Intersect method in the list class ==========================================    
 # solution 1:   
 # big O(n) 
 
@@ -239,7 +240,7 @@ class array:
         # for item in self._args_list:
         #     print(item)
 
-# ============================================================== excercise with create instance =====================================       
+# ============================================================== create some instances  =====================================       
 
 instance= array()
 instance.append(10)
