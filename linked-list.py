@@ -17,7 +17,7 @@ class linkedList(Node):
 
     # setter
     def SetLinkedList(self): # update and create a linked-list
-        self= self.createNewNode()
+        self= self.createBackupHead()
         global linkedLi
         linkedLi= []
         while self is not None: # in the previous Traverses self was an object of node class
@@ -50,7 +50,7 @@ class linkedList(Node):
         return inp.address is not None
 
 
-    def createNewNode(self):
+    def createBackupHead(self):
         node= self.head
         return node
 
@@ -73,7 +73,7 @@ class linkedList(Node):
         if len(linkedLi) < 2:
             print(f"OPPs!! you should first add at least 2 nodes to the linked-list; now the count of nodes is {len(linkedLi)}")
         elif availableNode in linkedLi:
-            newNode= self.createNewNode()
+            newNode= self.createBackupHead()
             while newNode.value is not availableNode:
                 previNode= newNode
                 newNode= newNode.address
@@ -92,7 +92,7 @@ class linkedList(Node):
             self.head= newNode
         # if was not empty
          # we sure at least we have a item  in the linked-list
-        node= self.createNewNode()
+        node= self.createBackupHead()
         while self.toLastNode(node):
             node= node.address
 
@@ -111,7 +111,7 @@ class linkedList(Node):
         if self.head == None: # if linked-list was empty
             print(f"there is no node in the linked-list")
 
-        newNode= self.createNewNode()
+        newNode= self.createBackupHead()
         while newNode.value is not node:
             previNode= newNode
             newNode= newNode.address
@@ -124,9 +124,7 @@ class linkedList(Node):
         if self.head == None: # if linked-list was empty
             print(f"there is no node in the linked-list")
         else:
-            # nextNode= self.head
-            node= self.createNewNode()
-            # self.head= deletedNode.address
+            node= self.createBackupHead()
             while self.toLastNode(node):
                 # previous node 
                 previNode= node
