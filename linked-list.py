@@ -112,24 +112,28 @@ class linkedList(Node):
 
 
     def deleteFirst(self):
-        if self.head == None: # if linked-list was empty
-            print(f"there is no node in the linked-list")
+        if self.head == None or len(linkedLi) < 2: # if linked-list was empty or had a one node
+            print("there is no node in the linked-list or there is one node in the linked-list. \nat least we need 2 nodes in the linked-list.")
         else:
             # [10 -> 20 -> 30 -> 40]
             # our expected after the execution of program: [20 -> 30 -> 40]
-            # in this solution the address of the first node is automatically set with Node
+
+            # solution 1:
+            # in this solution the address of the first node is automatically set with None
+            # in the solution 1, we need to 2 nodes if we don't have them, we must print a message for user.
             deletedNode= self.createBackupHead()
             self.head= deletedNode.address
 
-            # solution 2: we delete the field of the address of the first Node 
+            # solution 2: we delete the field of the address of the first Node.
+            # in the solution 2, we need to 2 nodes if we don't have them, we must print a message for user.
             # deletedNode= self.head.address
             # self.head.address= None
             # self.head= deletedNode
     
 
     def deleteBetween(self, node):
-        if self.head == None: # if linked-list was empty
-            print(f"there is no node in the linked-list")
+        if self.head == None or len(linkedLi) < 2: # if linked-list was empty or had a one node
+            print("there is no node in the linked-list or there is one node in the linked-list. \nat least we need 2 nodes in the linked-list.")
 
         newNode= self.createBackupHead()
         while newNode.value is not node:
@@ -141,8 +145,8 @@ class linkedList(Node):
     
 
     def deleteLast(self):
-        if self.head == None: # if linked-list was empty
-            print(f"there is no node in the linked-list")
+        if self.head == None or len(linkedLi) < 2: # if linked-list was empty or had a one node
+            print("there is no node in the linked-list or there is one node in the linked-list. \nat least we need 2 nodes in the linked-list.")
         else:
             node= self.createBackupHead()
             while self.toLastNode(node):
@@ -159,7 +163,7 @@ class linkedList(Node):
 first= linkedList()
 
 # we should set a value for self.head because the value of self.head is None in the class and we have to add a node to the linked-list;
-#  or we have to use the addFirst or addLast methods. 
+# or we have to use the addFirst or addLast methods 
 first.head= Node(10) # we set a new value for self.head
 
 second= Node(20)
