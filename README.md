@@ -3,4 +3,4 @@
 
 # usage method:
 
-# All you have to do is clone this repository, that's it.
+All you have to do is clone this repository, that's it.
