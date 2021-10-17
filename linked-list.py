@@ -17,7 +17,7 @@ class linkedList(Node):
 
     # setter
     def SetLinkedList(self): # update and create a linked-list
-        self= self.createBackupHead()
+        self= self.__createBackupHead()
         global linkedLi
         linkedLi= []
         while self is not None: # in the previous Traverses self was an object of node class
@@ -41,8 +41,8 @@ class linkedList(Node):
     def indexOf(self,value):
         if value in linkedLi:
             index= 0
-            node= self.createBackupHead()
-            while self.toLastNode(node):
+            node= self.__createBackupHead()
+            while self.__toLastNode(node):
                 if node.value is value:
                     return index
 
@@ -54,15 +54,15 @@ class linkedList(Node):
         return f"ValueError: {value} is not in list, please enter another value" 
 
    
-    def isEmpty(self):
+    def __isEmpty(self): # this is a private method
         return self.head == None
 
 
-    def toLastNode(self, inp):
+    def __toLastNode(self, inp): # this is a private method
         return inp.address is not None
 
 
-    def createBackupHead(self):
+    def __createBackupHead(self): # this is a private method
         node= self.head
         return node
 
@@ -71,7 +71,7 @@ class linkedList(Node):
         # solution 1: with use of Node class
         newNode= Node(node)
         # the blow command checks linked-list is empty or not
-        if self.isEmpty():
+        if self.__isEmpty():
             self.head= newNode
         # if was not empty 
         # first we have to create address pointer based-on a node
@@ -85,7 +85,7 @@ class linkedList(Node):
         if len(linkedLi) < 2:
             print(f"OPPs!! you should first add at least 2 nodes to the linked-list; now the count of nodes is {len(linkedLi)}")
         elif availableNode in linkedLi:
-            newNode= self.createBackupHead()
+            newNode= self.__createBackupHead()
             while newNode.value is not availableNode:
                 previNode= newNode
                 newNode= newNode.address
@@ -100,12 +100,12 @@ class linkedList(Node):
         # solution 1: with use of Node class
         newNode= Node(nodeVal)
         # the blow command checks linked-list is empty or not
-        if self.isEmpty():
+        if self.__isEmpty():
             self.head= newNode
         # if was not empty
          # we sure at least we have a item  in the linked-list
-        node= self.createBackupHead()
-        while self.toLastNode(node):
+        node= self.__createBackupHead()
+        while self.__toLastNode(node):
             node= node.address
 
         node.address= newNode
@@ -121,7 +121,7 @@ class linkedList(Node):
             # solution 1:
             # in this solution the address of the first node is automatically set with None
             # in the solution 1, we need to 2 nodes if we don't have them, we must print a message for user.
-            deletedNode= self.createBackupHead()
+            deletedNode= self.__createBackupHead()
             self.head= deletedNode.address
 
             # solution 2: we delete the field of the address of the first Node.
@@ -135,7 +135,7 @@ class linkedList(Node):
         if self.head == None or len(linkedLi) < 2: # if linked-list was empty or had a one node
             print("there is no node in the linked-list or there is one node in the linked-list. \nat least we need 2 nodes in the linked-list.")
 
-        newNode= self.createBackupHead()
+        newNode= self.__createBackupHead()
         while newNode.value is not node:
             previNode= newNode
             newNode= newNode.address
@@ -148,8 +148,8 @@ class linkedList(Node):
         if self.head == None or len(linkedLi) < 2: # if linked-list was empty or had a one node
             print("there is no node in the linked-list or there is one node in the linked-list. \nat least we need 2 nodes in the linked-list.")
         else:
-            node= self.createBackupHead()
-            while self.toLastNode(node):
+            node= self.__createBackupHead()
+            while self.__toLastNode(node):
                 # previous node 
                 previNode= node
                 # new node
