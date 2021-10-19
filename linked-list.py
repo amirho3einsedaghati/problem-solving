@@ -1,11 +1,11 @@
 # ===================================================== linked-List Implementation ===========================================
 
+
 class Node:
     def __init__(self,value=None): # this calss, create a node with recieved value. 
         self.value= value
         self.__address= None # meaning: the self points to the last node 
    
-
     @property
     def address(self):
         return self.__address
@@ -14,6 +14,7 @@ class Node:
     @address.setter
     def address(self, nextNode):
         self.__address= nextNode
+
 
 
 class linkedList(Node):
@@ -31,16 +32,21 @@ class linkedList(Node):
         self.__head= firstNode
 
 
-    # this method first create a linked-list and then return it
-    def getLinkedList(self): 
-        backupNode= self.__createBackupHead()
+    def __getList(self):
         global linkedLi
         linkedLi= []
-        while backupNode is not None: # in the previous Traverses self was an object of node class
-            linkedLi.append(backupNode.value)
-            backupNode= backupNode.address # in the last iterate is set None for self.address
-
         return linkedLi
+
+
+    # this method first update a recurisve list by the items of linked-list then return it
+    def getLinkedList(self): 
+        backupNode= self.__createBackupHead()
+        ls= self.__getList()
+        while backupNode is not None: # in the previous Traverses self was an object of node class
+            ls.append(backupNode.value)
+            backupNode= backupNode.address # in the last iterate is set None for self.address
+       
+        return ls
 
 
     def contains(self,value):
@@ -194,7 +200,29 @@ class linkedList(Node):
             previNode.address= node.address
 
 
-    
+    # def __generateVacentString(self):
+    #     li= ['']
+    #     length= self.size()
+    #     li *= length
+
+    #     return li
+
+
+    # i implemented the blow method in the linked-list class but really we don't need it beacause, "getLinkedList" method in the linked-list class
+    # update the linked-list to a list and return it and __getList create and return a list
+
+    # def toList(self): # convert linked-list to list and return it 
+    #     i= 0
+    #     lis= self.__generateVacentString()
+    #     backUpNode= self.__createBackupHead()
+    #     while self.__toLastNode(backUpNode):
+    #         lis[i]= backUpNode.value
+    #         backUpNode= backUpNode.address
+    #         i += 1
+        
+    #     lis[i]= backUpNode.value
+    #     return lis
+              
 
 # ===================================================== create objects ============================================
 
@@ -214,10 +242,11 @@ third= Node(30)
 # we must describe out of class: what does each node 'address pointer', refer to?
 first.head.address= second
 second.address= third
-print(first.size()) # 3
+# print(first.size()) # 3
 
 # we have to use the below method to return the created linked-list 
 print(first.getLinkedList())
+
 # print(first.size())
 
 # print(first.indexOf(30))
@@ -258,4 +287,7 @@ first.addBetween(20,40)
 
 first.addBetween(20,30)
 print(first.getLinkedList())
-print(first.size())
+# print(first.size())
+
+# print(type(first.getLinkedList())) # <class 'list'>
+
