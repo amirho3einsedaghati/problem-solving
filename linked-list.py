@@ -5,6 +5,7 @@ class Node:
         self.value= value
         self.__address= None # meaning: the self points to the last node 
    
+
     @property
     def address(self):
         return self.__address
@@ -31,7 +32,7 @@ class linkedList(Node):
 
 
     # this method first create a linked-list and then return it
-    def returnLinkedList(self): 
+    def getLinkedList(self): 
         backupNode= self.__createBackupHead()
         global linkedLi
         linkedLi= []
@@ -202,27 +203,28 @@ first= linkedList()
 # we should set a value for self.headbecause the value of self.headis None in the class and we have to add a node to the linked-list;
 # or we have to use the addFirst or addLast methods 
 first.head= Node(10) # we set a new value for self.head
-print(first.size)
+# print(first.size()) # 1
 
 second= Node(20)
-print(first.size)
+# print(first.size()) # 1
 
 third= Node(30)
-print(first.size)
+# print(first.size()) # 1
 
 # we must describe out of class: what does each node 'address pointer', refer to?
 first.head.address= second
 second.address= third
+print(first.size()) # 3
 
 # we have to use the below method to return the created linked-list 
-print(first.returnLinkedList())
+print(first.getLinkedList())
 # print(first.size())
 
 # print(first.indexOf(30))
 # print(first.indexOf(7))
  
 # the command is for traversing linked-list nodes
-# linkedList= first.returnLinkedList()
+# linkedList= first.getLinkedList()
 # for item in linkedList:
 #     print(item)
 
@@ -231,30 +233,29 @@ print(first.returnLinkedList())
 
 # calling addFirst() method:
 first.addFirst(0)
-print(first.returnLinkedList())
+print(first.getLinkedList())
 # print(first.size())
 
 # calling solution addLast() method:
 first.addLast(40)
-print(first.returnLinkedList())
+print(first.getLinkedList())
 # print(first.size())
 
 first.deleteFirst()
-print(first.returnLinkedList())
+print(first.getLinkedList())
 # print(first.size())
 
 first.deleteLast()
-print(first.returnLinkedList())
+print(first.getLinkedList())
 # print(first.size())
 
 first.deleteBetween(20)
-print(first.returnLinkedList())
+print(first.getLinkedList())
 # print(first.size())
 
 first.addBetween(20,40)
 # print(first.size())
 
 first.addBetween(20,30)
-print(first.returnLinkedList())
-
+print(first.getLinkedList())
 print(first.size())
