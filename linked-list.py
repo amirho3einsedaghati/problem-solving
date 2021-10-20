@@ -32,7 +32,7 @@ class linkedList(Node):
         self.__head= firstNode
 
 
-    def __getList(self):
+    def __getList(self): # create and return a linked list
         global linkedLi
         linkedLi= []
         return linkedLi
