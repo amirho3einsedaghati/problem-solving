@@ -3,191 +3,211 @@ from typing import Iterable
 
 class array:
     def __init__(self):
-        self._args_list= [] 
-        self._list= []
-        self._intersection= [] 
+        self.__args_list= [] 
+        self.__list= []
+        self.__intersection= [] 
 
 
     def __resize(self, item): # this is a private method 
+        # big O: O(1)
         __resizedList= [""]
         if type(item) == int:
-            size= self.len(self._args_list)
+            size= self.len(self.__args_list)
             size += 1 
             __resizedList *= size
             return __resizedList
         elif type(item) == list or type(item) == str or type(item) == tuple:
             itemSize= len(item)
-            size= self.len(self._args_list)
+            size= self.len(self.__args_list)
             size += itemSize
             __resizedList *= size
             return __resizedList
 
-    def len(self, li: list): # this is a public method 
-        count= 0
-        for item in self._args_list:
-            count += 1
-        return count
+
+    def len(self, iter): # we suppose this method is a private method 
+        # big O: O(1)
+        return len(iter)
+
 
     def append(self, item):
-        # solution 1: without use of "obj.__add__()"
+        # big O: O(n)
+        # solution 1: without use of ".__add__()"
         res= self.__resize(item)
         for i in range(0, len(res)):
             if i < len(res) - 1:
-                res[i] = self._args_list[i]
+                res[i] = self.__args_list[i]
             elif i == len(res) - 1:
                 res[i]= item
-        self._args_list= res
+        self.__args_list= res
 
-        # solution 2: with use of "obj.__add__()"
-        # self._args_list= self._args_list.__add__([0])
-        # self._args_list[self.len(self._args_list)-1] = item
-
+        # solution 2: with use of ".__add__()"
+        # self.__args_list= self.__args_list.__add__([0])
+        # self.__args_list[self.len(self.__args_list)-1] = item
 
 
     def extend(self,__Iterable: Iterable[int]):
-        # solution 1: without use of "obj.__add__()"
+        # big O: O(n)
+        # solution 1: without use of ".__add__()"
         res= self.__resize(__Iterable)
         index= 0
         for i in range(0, len(res)):
-            if i < self.len(self._args_list):
-                res[i] = self._args_list[i]
-            elif self.len(self._args_list) <= i <= len(res) -1:
+            if i < self.len(self.__args_list):
+                res[i] = self.__args_list[i]
+            elif self.len(self.__args_list) <= i <= len(res) -1:
                 res[i]= __Iterable[index]
                 index += 1
-        self._args_list= res
+        self.__args_list= res
 
-        # solution 2: with use of "obj.__add__()"
+        # solution 2: with use of ".__add__()"
         # for item in __Iterable:
-        #     self._args_list= self._args_list.__add__([0])
-        #     self._args_list[self.len(self._args_list) - 1]= item
+        #     self.__args_list= self.__args_list.__add__([0])
+        #     self.__args_list[self.len(self.__args_list) - 1]= item
 
 
 
     def insert(self, index: int, item:object):
-         # solution 1: without use of "obj.__add__()"
-        self.append(item) # we are working on such a example list: self._args_list= [1,2,3,4,5,""]
+        # big O: O(n)
+        # solution 1: without use of ".__add__()"
+        self.append(item) # we are working on such a example list: self.__args_list= [1,2,3,4,5,""]
 
-        if index >= self.len(self._args_list):
-            print(f"the index is out of range, the index must be between 0 and {self.len(self._args_list) - 1}")
+        if index >= self.len(self.__args_list):
+            print(f"the index is out of range, the index must be between 0 and {self.len(self.__args_list) - 1}")
 
-        elif 0 <= index < self.len(self._args_list):
-            for i in range(self.len(self._args_list)-1, index, -1):
-                if index <= self.len(self._args_list) - 2: # if the user has seen this [1,2,3,4,5] and want to add an item to the last index or previous index, the below commands are run.
-                    copy= self._args_list[i - 1]
-                    self._args_list[i - 1]= self._args_list[i]
-                    self._args_list[i]= copy
-                    if self._args_list[index] == "":
-                        # print(self._args_list.index([index + 1])
-                        # copy= self._args_list[index + 1]
-                        self._args_list[index]= item
-                        # self._args_list[index]= copy
-                elif index == self.len(self._args_list) - 1: # if the user has seen this [1,2,3,4,5] and want to add an item to the self.len(self._args_list), the below commands are run.
-                    self._args_list[index]= item
+        elif 0 <= index < self.len(self.__args_list):
+            for i in range(self.len(self.__args_list)-1, index, -1):
+                if index <= self.len(self.__args_list) - 2: # if the user has seen this [1,2,3,4,5] and want to add an item to the last index or previous index, the below commands are run.
+                    copy= self.__args_list[i - 1]
+                    self.__args_list[i - 1]= self.__args_list[i]
+                    self.__args_list[i]= copy
+                    if self.__args_list[index] == "":
+                        # print(self.__args_list.index([index + 1])
+                        # copy= self.__args_list[index + 1]
+                        self.__args_list[index]= item
+                        # self.__args_list[index]= copy
+                elif index == self.len(self.__args_list) - 1: # if the user has seen this [1,2,3,4,5] and want to add an item to the self.len(self.__args_list), the below commands are run.
+                    self.__args_list[index]= item
 
-        # solution 2: with use of "obj.__add__()"           
-        # if 0 <= index < self.len(self._args_list):
-        #     for i in range(self.len(self._args_list)-1, index-1, -1):
-        #         if i == self.len(self._args_list) - 1:
-        #             copy= self._args_list[i]
-        #             self._args_list[i]= 0
-        #             self._args_list= self._args_list.__add__([copy])
-        #             self._args_list[i]= item
-        #         elif i != self.len(self._args_list) - 1:
-        #             copy= self._args_list[i]
-        #             self._args_list[i]= 0
-        #             self._args_list[i + 1]= copy
-        #             if self._args_list[index] == 0:
-        #                 self._args_list[index]= item
-        # elif index == self.len(self._args_list):
-        #     self._args_list= self._args_list.__add__([0])
-        #     self._args_list[index]= item
+        # solution 2: with use of ".__add__()"           
+        # if 0 <= index < self.len(self.__args_list):
+        #     for i in range(self.len(self.__args_list)-1, index-1, -1):
+        #         if i == self.len(self.__args_list) - 1:
+        #             copy= self.__args_list[i]
+        #             self.__args_list[i]= 0
+        #             self.__args_list= self.__args_list.__add__([copy])
+        #             self.__args_list[i]= item
+        #         elif i != self.len(self.__args_list) - 1:
+        #             copy= self.__args_list[i]
+        #             self.__args_list[i]= 0
+        #             self.__args_list[i + 1]= copy
+        #             if self.__args_list[index] == 0:
+        #                 self.__args_list[index]= item
+        # elif index == self.len(self.__args_list):
+        #     self.__args_list= self.__args_list.__add__([0])
+        #     self.__args_list[index]= item
 
 
-    def pop(self, index: int): #Remove and return item at index 
-        try:
-            deleted_of_list= self._args_list[index]
-            self._args_list.__delitem__(index)
-        except IndexError:
-            print(f"the index must be: index < {self.len(self._args_list)}, please enter another index")
-        else:
-            return deleted_of_list
+    def pop(self, index: int): #Remove and return item at index
+        # big O: O(n) 
+        # solution 1: whitout use of obj.__delitem__()
+        li= []
+        if index > len(self.__args_list) - 1:
+            print(f"the index must be: index <= {self.len(self.__args_list)}, please enter another index")
+
+        for i in range(0,len(self.__args_list)):
+            if i != index:
+                li.append(self.__args_list[i])
+        self.__args_list= li
+
+        # solution 2: whit use of obj.__delitem__()
+        # li= []
+        # try:
+        #     deleted_of_list= self.__args_list[index]
+        #     self.__args_list.__delitem__(index)
+        # except IndexError:
+        #     print(f"the index must be: index < {self.len(self.__args_list)}, please enter another index")
+        # else:
+        #     return deleted_of_list
 
 
     def remove(self, value):
+        # big O: O(n)
         indexVal= self.index(value)
         if type(indexVal) == str:
             print(f"the value of {value} is not in the list")
         else:
-            self._args_list.pop(indexVal)
+            self.__args_list.pop(indexVal)
 
 
-    def reverse(self): # reverse the main list (self._args_list)
+    def reverse(self): # reverse the main list (self.__args_list)
+        # big O: O(n)
         # solution 1:
         # with use of []
-        self._args_list= self._args_list[::-1]
+        self.__args_list= self.__args_list[::-1]
 
         # solution 2:
-        # with use of obj.append()
+        # with use of .append()
         # items= []
-        # for i in range(self.len(self._args_list)-1, -1, -1):
-        #     items.append(self._args_list[i]) 
-        # self._args_list= items
+        # for i in range(self.len(self.__args_list)-1, -1, -1):
+        #     items.append(self.__args_list[i]) 
+        # self.__args_list= items
 
         # solution 3:
-        # without use of obj.appned()
-        # n= self.len(self._args_list)
+        # without use of .appned()
+        # n= self.len(self.__args_list)
         # past index= 0   1   2   3   4
         # past index == new index
         # new index= n-5  n-4 n-3 n-2 n-1    
         #            [1 , 2 , 3 , 4 , 5]    ->  reversed:[5 , 4 , 3 , 2 , 1] 
         # how to reach the 'reversed' ingredients?
-        # if we want to reach the second item of 'self._args_list' at 'reversed' list:  past index: 1    ,   new index: n - 4  => answer: new index= n - (i + 1)
+        # if we want to reach the second item of 'self.__args_list' at 'reversed' list:  past index: 1    ,   new index: n - 4  => answer: new index= n - (i + 1)
 
         # items= [""]
-        # count= self.len(self._args_list)
+        # count= self.len(self.__args_list)
         # items *= count
         # for i in range(0,count): 
-        #     reversed= self._args_list[count - i - 1]
+        #     reversed= self.__args_list[count - i - 1]
         #     items[i]= reversed
 
-        # self._args_list= items
+        # self.__args_list= items
 
 
     def index(self,value):
-        if value in self._args_list:
-            len= self.len(self._args_list) 
+        # big O: O(n)
+        if value in self.__args_list:
+            len= self.len(self.__args_list) 
             for i in range(0,len):
-               if self._args_list[i] is value:
+               if self.__args_list[i] is value:
                     return i
         else:
             return f"{value} is not in list, please enter another value"
 
 
     def max(self): #Return maximum
+        # big O: O(n)
         # solution 1:
         # in this solution we used while loop and considered max= 0
         index=0
-        while index < self.len(self._args_list):
+        while index < self.len(self.__args_list):
             max= 0
-            if max < self._args_list[index]:
-                max= self._args_list[index]
+            if max < self.__args_list[index]:
+                max= self.__args_list[index]
             index += 1
         return max
 
         # solution 2:
-        # in this solution we used for loop and considered max= self._args_list[0]
-        # max= self._args_list[0]
-        # for i in range(0,self.len(self._args_list)):
-        #     if self._args_list[i] > max:
-        #         max= self._args_list[i]
+        # in this solution we used for loop and considered max= self.__args_list[0]
+        # max= self.__args_list[0]
+        # for i in range(0,self.len(self.__args_list)):
+        #     if self.__args_list[i] > max:
+        #         max= self.__args_list[i]
         # return max
 
         # solution 3:
         # in this solution we used for loop and considered max= 0
         # max= 0
-        # for i in range(0,self.len(self._args_list)):
-        #     if max < self._args_list[i]:
-        #         max= self._args_list[i]
+        # for i in range(0,self.len(self.__args_list)):
+        #     if max < self.__args_list[i]:
+        #         max= self.__args_list[i]
         # return max
 
 
@@ -196,51 +216,52 @@ class array:
 # big O(n) 
 
     def intersection_points(self,li: list):
-        for item in self._args_list:
+        for item in self.__args_list:
             if item in li:
-                self._intersection.append(item)
-        return f"intersection array with list: {self._intersection}"
+                self.__intersection.append(item)
+        return f"intersection array with list: {self.__intersection}"
 
 # ----------------------
 # solution 2:
 # big O(n^2)
 
     def append_or_extend_to_list(self, item):
-        # solution 1: without use of "obj.__add__()"
+        # solution 1: without use of ".__add__()"
         if type(item) == str or type(item) == list or type(item) == tuple:
             self.extend(item)
         else:
             self.append(item)
 
-        # solution 2: with use of "obj.__add__()"  
+        # solution 2: with use of ".__add__()"  
         # if type(item) == str or type(item) == list or type(item) == tuple:
         #     for value in item:
-        #         self._list= self._list.__add__([0])
-        #         self._list[len(self._list) - 1]= value
+        #         self.__list= self.__list.__add__([0])
+        #         self.__list[len(self.__list) - 1]= value
         # else:
-        #     self._list= self._list.__add__([0])
-        #     self._list[len(self._list)-1] = item
+        #     self.__list= self.__list.__add__([0])
+        #     self.__list[len(self.__list)-1] = item
 
 
     # def intersection_points(self):
     #     # solution 1:
     #     # in this solution we used list comprehension
-    #     [[self._intersection.append(item) for value in self._list if item == value] for item in self._args_list]
-    #     return f"intersection array with list: {self._intersection}"
+    #     [[self.__intersection.append(item) for value in self.__list if item == value] for item in self.__args_list]
+    #     return f"intersection array with list: {self.__intersection}"
 
         # solution 2:
         # in this solution we used nested for
-        # for item in self._args_list:
-        #     for value in self._list:
+        # for item in self.__args_list:
+        #     for value in self.__list:
         #         if item == value:
-        #             self._intersection.append(item)
-        # return f"intersection array with list: {self._intersection}"
+        #             self.__intersection.append(item)
+        # return f"intersection array with list: {self.__intersection}"
 
 # ========================================   
 
     def show_list(self):
-        print(self._args_list)
-        # for item in self._args_list:
+        # big O: O(1)
+        print(self.__args_list)
+        # for item in self.__args_list:
         #     print(item)
 
 # ============================================================== create some instances  =====================================       
@@ -258,15 +279,15 @@ instance.show_list()
 # instance.show_list()
 
 # # # print("=====================")
-# # instance.pop(50)
-# # instance.pop(1) # akharin item ro hazf mikonad
-# # instance.show_list()
+# instance.pop(0)
+# instance.pop(50) # akharin item ro hazf mikonad
+# instance.show_list()
 # # # print(instance.index(20))
 # # # print(instance.index(200)
 
 # # # # print("=====================")
 # # # # instance.show_list()
-print(instance.max())
+# print(instance.max())
 
 # instance.append_or_extend_to_list([20,12,34,10,50,28])
 # instance.append_or_extend_to_list(100)
@@ -291,7 +312,8 @@ instance.show_list()
 # instance.remove(1000)
 # instance.show_list()
 
-# instance.remove("a")
+# instance.remove(1000)
 # instance.show_list()
 
-# print(instance.len([10, 20, 30, 40, 50, 60, 70, 7, 80, 90, 120]))
+# instance.remove(7)
+# instance.show_list()
