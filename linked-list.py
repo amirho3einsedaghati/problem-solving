@@ -8,11 +8,13 @@ class Node:
    
     @property
     def address(self):
+        # big O: O(1)
         return self.__address
 
 
     @address.setter
     def address(self, nextNode):
+        # big O: O(1)
         self.__address= nextNode
 
 
@@ -24,15 +26,18 @@ class linkedList(Node):
 
     @property
     def head(self):
+        # big O: O(1)
         return self.__head
 
 
     @head.setter
     def head(self, firstNode):
+        # big O: O(1)
         self.__head= firstNode
 
 
     def __getList(self): # create and return a linked list
+        # big O: O(1)
         global linkedLi
         linkedLi= []
         return linkedLi
@@ -40,6 +45,7 @@ class linkedList(Node):
 
     # this method first update a recurisve list by the items of linked-list then return it
     def getLinkedList(self): 
+        # big O: O(n)
         backupNode= self.__createBackupHead()
         ls= self.__getList()
         while backupNode is not None: # in the previous Traverses self was an object of node class
@@ -50,6 +56,7 @@ class linkedList(Node):
 
 
     def contains(self,value):
+        # big O: O(1)
         # solution 1: with use of indexOf method
         return type(self.indexOf(value)) == int 
 
@@ -62,6 +69,7 @@ class linkedList(Node):
 
     # we need first create index for Nodes then we should check node.value with received value, if they was equal; return the index
     def indexOf(self,value):
+        # big O: O(n)
         if value in linkedLi:
             index= 0
             node= self.__createBackupHead()
@@ -80,6 +88,7 @@ class linkedList(Node):
     #if we reached to the last Node in the linked-list, return the lenght of the linked-list
     # big O: O(n)
     def size(self):
+        # big O: O(n)
         count= 0
         node= self.__createBackupHead()
         while node: # do we have node?
@@ -90,19 +99,23 @@ class linkedList(Node):
 
 
     def __isEmpty(self): # this is a private method
+        # big O: O(1)
         return self.head== None
 
 
     def __toLastNode(self, inp): # this is a private method, this method reach us to the last node of the linked-list 
+        # big O: O(1)
         return inp.address is not None # don't traverse the last node
 
 
     def __createBackupHead(self): # this is a private method
+        # big O: O(1)
         node= self.head
         return node
     
 
     def addFirst(self,node):
+        # big O: O(1)
         # solution 1: with use of Node class
         newNode= Node(node)
         # the blow command checks linked-list is empty or not
@@ -116,6 +129,7 @@ class linkedList(Node):
 
 
     def addBetween(self, newVal, availableNode):
+        # big O: O(n)
         userNode= Node(newVal)
         if len(linkedLi) < 2:
             print(f"OPPs!! you should first add at least 2 nodes to the linked-list; now the count of nodes is {len(linkedLi)}")
@@ -133,6 +147,7 @@ class linkedList(Node):
 
             
     def addLast(self,nodeVal):
+        # big O: O(1)
         # solution 1: with use of Node class
         newNode= Node(nodeVal)
 
@@ -150,6 +165,7 @@ class linkedList(Node):
 
 
     def deleteFirst(self):
+        # big O: O(1)
         if self.__isEmpty() or len(linkedLi) < 2: # if linked-list was empty or had a one node
             print("there is no node in the linked-list or there is one node in the linked-list. \nat least we need 2 nodes in the linked-list.")
 
@@ -171,6 +187,7 @@ class linkedList(Node):
 
 
     def deleteBetween(self, node):
+        # big O: O(n)
         if self.head== None or len(linkedLi) == 1: # if linked-list was empty or had a one node
             print("there is no node in the linked-list or there is one node in the linked-list. \nat least we need 2 nodes in the linked-list.")
 
@@ -184,6 +201,7 @@ class linkedList(Node):
 
         
     def deleteLast(self):
+        # big O: O(n)
         if len(linkedLi) < 2: # if linked-list was empty or had a one node
             print("there is no node in the linked-list or there is one node in the linked-list. \nat least we need 2 nodes in the linked-list.")
 
@@ -209,7 +227,7 @@ class linkedList(Node):
 
 
     # i implemented the blow method in the linked-list class but really we don't need it beacause, "getLinkedList" method in the linked-list class
-    # update the linked-list to a list and return it and __getList create and return a list
+    # update list by the items of the linked-list and __getList method create and return a list
 
     # def toList(self): # convert linked-list to list and return it 
     #     i= 0
