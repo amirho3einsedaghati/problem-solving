@@ -44,7 +44,7 @@ class linkedList(Node):
 
 
     # this method first update a recurisve list by the items of linked-list then return it
-    def getLinkedList(self): 
+    def getConvertedLinkedList(self): 
         # big O: O(n)
         backupNode= self.__createBackupHead()
         ls= self.__getList()
@@ -217,6 +217,9 @@ class linkedList(Node):
 
             previNode.address= node.address
 
+    def reverse(self):
+        reversed= linkedLi[::-1]
+        return reversed
 
     # def __generateVacentString(self):
     #     li= ['']
@@ -263,7 +266,7 @@ second.address= third
 # print(first.size()) # 3
 
 # we have to use the below method to return the created linked-list 
-print(first.getLinkedList())
+print(first.getConvertedLinkedList())
 
 # print(first.size())
 
@@ -271,7 +274,7 @@ print(first.getLinkedList())
 # print(first.indexOf(7))
  
 # the command is for traversing linked-list nodes
-# linkedList= first.getLinkedList()
+# linkedList= first.getConvertedLinkedList()
 # for item in linkedList:
 #     print(item)
 
@@ -280,32 +283,33 @@ print(first.getLinkedList())
 
 # calling addFirst() method:
 first.addFirst(0)
-print(first.getLinkedList())
+print(first.getConvertedLinkedList())
 # print(first.size())
 
 # calling solution addLast() method:
 first.addLast(40)
-print(first.getLinkedList())
+print(first.getConvertedLinkedList())
 # print(first.size())
 
 first.deleteFirst()
-print(first.getLinkedList())
+print(first.getConvertedLinkedList())
 # print(first.size())
 
 first.deleteLast()
-print(first.getLinkedList())
+print(first.getConvertedLinkedList())
 # print(first.size())
 
 first.deleteBetween(20)
-print(first.getLinkedList())
+print(first.getConvertedLinkedList())
 # print(first.size())
 
 first.addBetween(20,40)
 # print(first.size())
 
 first.addBetween(20,30)
-print(first.getLinkedList())
+print(first.getConvertedLinkedList())
 # print(first.size())
 
-# print(type(first.getLinkedList())) # <class 'list'>
+# print(type(first.getConvertedLinkedList())) # <class 'list'>
 
+print(first.reverse())
