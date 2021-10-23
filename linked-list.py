@@ -217,9 +217,27 @@ class linkedList(Node):
 
             previNode.address= node.address
 
+
     def reverse(self):
+        # big O: O(1)
+        # solution 1:
         reversed= linkedLi[::-1]
         return reversed
+
+        # big O: O(n)
+        # solution 2:
+        # If the linked list is not converted to a list, we use this solution
+        # previous= self.__createBackupHead()
+        # current= previous.address
+        # while current != None:
+        #     next= current.address
+        #     current.address= previous
+        #     previous= current
+        #     current= next   
+
+        # self.head= previous
+
+
 
     # def __generateVacentString(self):
     #     li= ['']
