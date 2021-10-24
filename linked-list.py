@@ -284,7 +284,7 @@ class linkedList(Node):
             return node.value
 
 
-    def showMiddleNode(self):
+    def showMiddleNode(self): # this method print the value of the middle Node or median
         length= self.size()
         i= 0
         
@@ -301,7 +301,7 @@ class linkedList(Node):
                 node= node.address
                 i += 1
 
-            print(f"{first}, {second}")
+            print(f"median {first}, {second}: {(first + second) / 2}")
 
         elif length % 2 != 0: # odd
 
@@ -314,7 +314,7 @@ class linkedList(Node):
                 node= node.address
                 i += 1
             
-            print(middle.value)
+            print(f"median: {middle.value}")
         
 
     # def __generateVacentString(self):
