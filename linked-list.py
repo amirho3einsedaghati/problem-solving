@@ -232,7 +232,7 @@ class linkedList(Node):
     def reverse(self):
         # big O: O(n)
         # solution 1:
-        reversed= linkedLi[::-1]
+        reversed= linkedLi[::-1] 
         return reversed
 
         # big O: O(n)
@@ -253,8 +253,21 @@ class linkedList(Node):
 
     # this method return the Kth node from the end of the linked list in one pass
     def getKth(self, k):
+        #   0   1   2
+        # [10, 20, 30]
+        #      d   last
+        #   if k= 2, last= 3
+        
+        if self.__isEmpty():
+            return "linked list doesn't have any item"
+
         node= self.__createBackupHead()
         last= len(linkedLi)
+
+        if k < 0:
+            k= - k
+            distance= last - k
+
         distance= last - k
         index= 0
 
@@ -267,7 +280,7 @@ class linkedList(Node):
             index += 1
             node= node.address
 
-        if distance == index:
+        if distance == index or k == 0:
             return node.value
 
         
@@ -367,6 +380,10 @@ print(first.reverse())
 
 print('---------------')
 print(first.getConvertedLinkedList())
+print(first.getKth(0))
+print(first.getKth(-1))
+print(first.getKth(-2))
+print(first.getKth(-3))
 print(first.getKth(1))
 print(first.getKth(2))
 print(first.getKth(3))
