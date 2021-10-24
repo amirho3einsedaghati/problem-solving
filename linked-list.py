@@ -48,6 +48,7 @@ class linkedList(Node):
         # big O: O(n)
         backupNode= self.__createBackupHead()
         ls= self.__getList()
+
         while backupNode is not None: # in the previous Traverses self was an object of node class
             ls.append(backupNode.value)
             backupNode= backupNode.address # in the last iterate is set None for self.address
@@ -73,6 +74,7 @@ class linkedList(Node):
         if value in linkedLi:
             index= 0
             node= self.__createBackupHead()
+
             while self.__toLastNode(node):
                 if node.value is value:
                     return index
@@ -91,6 +93,7 @@ class linkedList(Node):
         # big O: O(n)
         count= 0
         node= self.__createBackupHead()
+
         while node: # do we have node?
             count += 1 
             node= node.address
@@ -118,9 +121,11 @@ class linkedList(Node):
         # big O: O(1)
         # solution 1: with use of Node class
         newNode= Node(node)
+
         # the blow command checks linked-list is empty or not
         if self.__isEmpty():
             self.head= newNode
+
         # if was not empty 
         # first we have to create address pointer based-on a node
         newNode.address= self.head
@@ -131,17 +136,20 @@ class linkedList(Node):
     def addBetween(self, newVal, availableNode):
         # big O: O(n)
         userNode= Node(newVal)
+
         if len(linkedLi) < 2:
             print(f"OPPs!! you should first add at least 2 nodes to the linked-list; now the count of nodes is {len(linkedLi)}")
 
         elif availableNode in linkedLi:
             newNode= self.__createBackupHead()
+
             while newNode.value is not availableNode:
                 previNode= newNode
                 newNode= newNode.address
         
             previNode.address= userNode
             userNode.address= newNode
+
         else:
             print(f"the value of {availableNode} is not in the linked-list")
 
@@ -158,6 +166,7 @@ class linkedList(Node):
         # if was not empty
          # we sure at least we have a item  in the linked-list
         node= self.__createBackupHead()
+
         while self.__toLastNode(node):
             node= node.address
 
@@ -181,6 +190,7 @@ class linkedList(Node):
             
             # solution 2: we delete the field of the address of the first Node.
             # in the solution 2, we need to 2 nodes if we don't have them, we must print a message for user.
+
             # deletedNode= self.head.address
             # self.head.address= None
             # self.head= deletedNode
@@ -209,6 +219,7 @@ class linkedList(Node):
             # solution 1:
             # in this solution the address of the first node is automatically set with None
             node= self.__createBackupHead()
+
             while self.__toLastNode(node):
                 # previous node 
                 previNode= node
@@ -219,7 +230,7 @@ class linkedList(Node):
 
 
     def reverse(self):
-        # big O: O(1)
+        # big O: O(n)
         # solution 1:
         reversed= linkedLi[::-1]
         return reversed
@@ -227,8 +238,10 @@ class linkedList(Node):
         # big O: O(n)
         # solution 2:
         # If the linked list is not converted to a list, we use this solution
+
         # previous= self.__createBackupHead()
         # current= previous.address
+
         # while current != None:
         #     next= current.address
         #     current.address= previous
@@ -238,7 +251,26 @@ class linkedList(Node):
         # self.head= previous
 
 
+    # this method return the Kth node from the end of the linked list in one pass
+    def getKth(self, k):
+        node= self.__createBackupHead()
+        last= len(linkedLi)
+        distance= last - k
+        index= 0
 
+        if k > last:
+            return f"linked list have {last} nodes"
+
+        while self.__toLastNode(node):
+            if distance == index:
+                return node.value
+            index += 1
+            node= node.address
+
+        if distance == index:
+            return node.value
+
+        
     # def __generateVacentString(self):
     #     li= ['']
     #     length= self.size()
@@ -254,6 +286,7 @@ class linkedList(Node):
     #     i= 0
     #     lis= self.__generateVacentString()
     #     backUpNode= self.__createBackupHead()
+
     #     while self.__toLastNode(backUpNode):
     #         lis[i]= backUpNode.value
     #         backUpNode= backUpNode.address
@@ -331,3 +364,10 @@ print(first.getConvertedLinkedList())
 # print(type(first.getConvertedLinkedList())) # <class 'list'>
 
 print(first.reverse())
+
+print('---------------')
+print(first.getConvertedLinkedList())
+print(first.getKth(1))
+print(first.getKth(2))
+print(first.getKth(3))
+print(first.getKth(4))
