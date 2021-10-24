@@ -257,12 +257,12 @@ class linkedList(Node):
         # [10, 20, 30]
         #      d   last
         #   if k= 2, last= 3
-        
+
         if self.__isEmpty():
             return "linked list doesn't have any item"
 
         node= self.__createBackupHead()
-        last= len(linkedLi)
+        last= self.size()
 
         if k < 0:
             k= - k
@@ -283,7 +283,40 @@ class linkedList(Node):
         if distance == index or k == 0:
             return node.value
 
+
+    def showMiddleNode(self):
+        length= self.size()
+        i= 0
         
+        if length % 2 == 0: # even
+            half= length / 2
+            node= self.__createBackupHead()
+
+            while self.__toLastNode(node):
+                if i == half - 1:
+                    first= node.value
+                if i == half:
+                    second= node.value
+
+                node= node.address
+                i += 1
+
+            print(f"{first}, {second}")
+
+        elif length % 2 != 0: # odd
+
+            length -= 1
+            target= (length / 2) + 1
+            node= self.__createBackupHead()
+
+            while i != target:
+                middle= node
+                node= node.address
+                i += 1
+            
+            print(middle.value)
+        
+
     # def __generateVacentString(self):
     #     li= ['']
     #     length= self.size()
@@ -367,7 +400,10 @@ first.deleteBetween(20)
 print(first.getConvertedLinkedList())
 # print(first.size())
 
-first.addBetween(20,40)
+# first.deleteFirst()
+# print(first.getConvertedLinkedList())
+
+first.addBetween(20,40) # the value of 40 is not in the linked-list
 # print(first.size())
 
 first.addBetween(20,30)
@@ -388,3 +424,8 @@ print(first.getKth(1))
 print(first.getKth(2))
 print(first.getKth(3))
 print(first.getKth(4))
+
+print('---------------')
+# first.addFirst(5)
+print(first.getConvertedLinkedList())
+first.showMiddleNode()
