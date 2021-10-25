@@ -250,6 +250,7 @@ class linkedList(Node):
 
         # self.head= previous
 
+#----------- floyd algorithm -----------
 
     # this method return the Kth node from the end of the linked list in one pass
     def getKth(self, k):
@@ -315,7 +316,23 @@ class linkedList(Node):
                 i += 1
             
             print(f"median: {middle.value}")
-        
+
+    def createLoop(self, point):   # the method create a loop in the received point and then print the value of it 
+        i= 1
+        slow= self.__createBackupHead()
+        fast= self.__createBackupHead()
+
+        while i != point:
+            slow= slow.address
+            i += 1
+
+        while self.__toLastNode(fast):
+            fast= fast.address
+
+        fast.address= slow  
+
+        if fast.address == slow:
+            print(f"fast variable meets slow variable in the point of {i} from the linked list: {fast.address.value}")
 
     # def __generateVacentString(self):
     #     li= ['']
@@ -429,3 +446,5 @@ print('---------------')
 # first.addFirst(5)
 print(first.getConvertedLinkedList())
 first.showMiddleNode()
+
+first.createLoop(2)
