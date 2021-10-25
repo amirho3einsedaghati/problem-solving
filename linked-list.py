@@ -317,26 +317,37 @@ class linkedList(Node):
             
             print(f"median: {middle.value}")
 
-    def createLoop(self, point):   # the method create a loop in the received point and then print the value of it 
+
+    def createLoop(self, point):   # the method create a loop by the received point and then specifies where fast variable meets slow variable
+        # fast: 2 steps 
+        # slow: 1 step
+        # distance fast form slow: +1
+
         i= 1
         slow= self.__createBackupHead()
         fast= self.__createBackupHead()
 
-        if point <= 0 or point > self.size():
+        if point <= 0 or point >= self.size():
             print(f"your point should be between 1 and {self.size()} !!")
 
         else:
             while i != point:
                 slow= slow.address
                 i += 1
+            backup= slow
+            slow= slow.address
 
-            while self.__toLastNode(fast):
+            while fast != None:
                 fast= fast.address
+                if fast != None:
+                    fast= fast.address
 
-            fast.address= slow  
+            fast= backup
+            fast= slow
+            
+            if fast == slow: # if the condition is true, meaning we are a loop
+                print(f"fast variable meets slow variable in the point of {i + 1} from the linked list: {fast.value}")
 
-            if fast.address == slow:
-                print(f"fast variable meets slow variable in the point of {i} from the linked list: {fast.address.value}")
 
     # def __generateVacentString(self):
     #     li= ['']
@@ -454,4 +465,7 @@ first.showMiddleNode()
 print('---------------')
 # first.createLoop(-1)
 # first.createLoop(0)
-first.createLoop(1)
+# first.createLoop(3)
+# first.createLoop(1)
+first.createLoop(2)
+
