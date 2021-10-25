@@ -322,17 +322,21 @@ class linkedList(Node):
         slow= self.__createBackupHead()
         fast= self.__createBackupHead()
 
-        while i != point:
-            slow= slow.address
-            i += 1
+        if point <= 0 or point > self.size():
+            print(f"your point should be between 1 and {self.size()} !!")
 
-        while self.__toLastNode(fast):
-            fast= fast.address
+        else:
+            while i != point:
+                slow= slow.address
+                i += 1
 
-        fast.address= slow  
+            while self.__toLastNode(fast):
+                fast= fast.address
 
-        if fast.address == slow:
-            print(f"fast variable meets slow variable in the point of {i} from the linked list: {fast.address.value}")
+            fast.address= slow  
+
+            if fast.address == slow:
+                print(f"fast variable meets slow variable in the point of {i} from the linked list: {fast.address.value}")
 
     # def __generateVacentString(self):
     #     li= ['']
@@ -447,4 +451,7 @@ print('---------------')
 print(first.getConvertedLinkedList())
 first.showMiddleNode()
 
-first.createLoop(2)
+print('---------------')
+# first.createLoop(-1)
+# first.createLoop(0)
+first.createLoop(1)
