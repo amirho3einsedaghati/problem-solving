@@ -54,7 +54,7 @@ class stack:
         return self.__list == []
 
 
-    def reverse(self, string):
+    def reverse(self, string): # return the reversed string 
         # O(n)
         self.__list= []
         for item in string:
@@ -69,6 +69,45 @@ class stack:
             reversed += "".join(li[i])
 
         return reversed
+        
+
+    def balancExpression(self, string: str):
+        self.__list= []
+        open_collectioin= ['(', '[', '{', '<']
+        close_stack= []
+        i= 0
+
+        while string[i] in open_collectioin and i < len(string):
+            self.push(string[i])
+            i += 1
+
+        for index in range(0, len(string)): 
+            if self.peek() == '(':
+                if ')' in string:
+                    self.pop()
+                else:
+                    return f"{string}: unbalanced"
+
+            if self.peek() == '[':
+                if ']' in string:
+                    self.pop()
+                else:
+                    return f"{string}: unbalanced"
+            
+            if self.peek() == '{':
+                if '}' in string:
+                    self.pop()
+                else:
+                    return f"{string}: unbalanced"
+
+            if self.peek() == '<':
+                if '>' in string:
+                    self.pop()
+                else:
+                    return f"{string}: unbalanced"
+
+        return f"{string}: balanced"
+                
 
 
 # ================================================ create some objects ====================================
@@ -98,3 +137,5 @@ print(obj.stack)
 obj.push(100)
 obj.push(200)
 print(obj.stack)
+
+print(obj.balancExpression("([2 + 4 [3])"))
