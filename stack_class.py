@@ -71,66 +71,146 @@ class stack:
         return reversed
         
 
-    def balancExpression(self, string: str): # expression syntax checking
+    def balanceExpression(self, string: str): # expression syntax checking
+        # solution 1: by one stack
         # O(n)
-        self.__list= []
-        open_collection= ['(', '[', '{', '<']
-        close_collection= [')', ']', '}', '>']
-        checking= ['(', '[', '{', '<', ')', ']', '}', '>']
-        close_stack= stack()
+        # open bracket   -> push
+        # close bracket  -> pop
+        if type(string) == str:
+            self.__list= []
 
-        # linear search to insert the item to self.__list and checks if in received string there was not the items of list return balance 
-        for i in range(0, len(string)):  
-            if string[i] in open_collection:
-                self.push(string[i]) 
-
-            if string[i] not in checking:
-                return f"{string} : balanced"
-
-        for j in range(len(string)- 1, -1, -1): # linear search to insert the item to close_stack
-            if string[j] in close_collection:
-                close_stack.push(string[j])
-
-        index= 0
-        while index < len(string): # Linear search to check whether the structure of an expression is incorrect or not
-            if self.peek() == '(':
-                if close_stack.peek() == ')':
-                    self.pop()
-                    close_stack.pop()
-                    index += 1
-                else:
-                    return f"{string} : unbalanced"
-
-            elif self.peek() == '[':
-                if close_stack.peek() == ']':
-                    self.pop()
-                    close_stack.pop()
-                    index += 1
-                else:
-                    return f"{string} : unbalanced"
-            
-            elif self.peek() == '{':
-                if close_stack.peek() == '}':
-                    self.pop()
-                    close_stack.pop()
-                    index += 1
-                else:
-                    return f"{string} : unbalanced"
-
-            elif self.peek() == '<':
-                if close_stack.peek() == '>':
-                    self.pop()
-                    close_stack.pop()
-                    index += 1
-                else:
-                    return f"{string} : unbalanced"
-
-            else:
-                index += 1
-
-        return f"{string} : balanced"
+            count_brackets= 0
+            for item in string:
+                if item == '(': 
+                    count_brackets += 1
+                    self.push(item)
                 
+                if item == ')':
+                    if self.isEmpty():
+                        return "stack is empty"
 
+                    count_brackets += 1
+                    self.pop()
+
+                if item == '[':
+                    count_brackets += 1
+                    self.push(item)
+                
+                if item == ']':
+                    if self.isEmpty():
+                        return "stack is empty"
+
+                    count_brackets += 1
+                    self.pop()
+
+                if item == '{':
+                    count_brackets += 1
+                    self.push(item)
+                
+                if item == '}':
+                    if self.isEmpty():
+                        return "stack is empty"
+
+                    count_brackets += 1
+                    self.pop()
+
+                if item == '<':
+                    count_brackets += 1
+                    self.push(item)
+                
+                if item == '>':
+                    if self.isEmpty():
+                        return "stack is empty"
+
+                    count_brackets += 1
+                    self.pop()
+
+            if count_brackets == 0:
+                return f"{string}: balanced"
+
+            if self.isEmpty():
+                return f"{string}: balanced"
+            else:
+                return f"{string}: unbalanced"
+
+        return "please just enter a string" 
+
+        # solution 2: by two stacks
+        # O(n)
+        # if type(string) == str:
+        #     self.__list= []
+        #     open_collection= ['(', '[', '{', '<']
+        #     close_collection= [')', ']', '}', '>']
+        #     count_brackets= 0
+        #     close_stack= stack()
+
+        #     for item in string:
+        #         if item == ')' or item == ']' or item == '}' or item == '>':
+        #             if self.isEmpty():
+        #                 return "stack is empty"
+        #             count_brackets += 1
+
+        #     # linear search to insert the item to self.__list and checks if in received string there was not the items of list return balance 
+        #     for i in range(0, len(string)):  
+        #         if string[i] in open_collection:
+        #             self.push(string[i]) 
+
+        #     for j in range(len(string)- 1, -1, -1): # linear search to insert the item to close_stack
+        #         if string[j] in close_collection:
+        #             close_stack.push(string[j])
+
+        #     index= 0
+        #     while index < len(string): # Linear search to check whether the structure of an expression is incorrect or not
+        #         if self.peek() == '(':
+        #             if close_stack.peek() == ')':
+        #                 self.pop()
+        #                 close_stack.pop()
+        #                 index += 1
+        #             else:
+        #                 return f"{string} : unbalanced"
+
+        #             count_brackets += 1 
+
+        #         elif self.peek() == '[':
+        #             if close_stack.peek() == ']':
+        #                 self.pop()
+        #                 close_stack.pop()
+        #                 index += 1
+        #             else:
+        #                 return f"{string} : unbalanced"
+                                            
+        #             count_brackets += 1
+
+        #         elif self.peek() == '{':
+        #             if close_stack.peek() == '}':
+        #                 self.pop()
+        #                 close_stack.pop()
+        #                 index += 1
+        #             else:
+        #                 return f"{string} : unbalanced"
+                                            
+        #             count_brackets += 1
+
+        #         elif self.peek() == '<':
+        #             if close_stack.peek() == '>':
+        #                 self.pop()
+        #                 close_stack.pop()
+        #                 index += 1
+        #             else:
+        #                 return f"{string} : unbalanced"
+                                            
+        #             count_brackets += 1
+
+        #         else:
+        #             index += 1
+
+        #     if count_brackets == 0:
+        #         return f"{string} : balanced"
+
+        #     return f"{string} : balanced"
+
+        # elif type(string) != str: 
+        #     return "please just enter a string"   
 
 # ================================================ create some objects ====================================
 
@@ -160,10 +240,12 @@ obj.push(100)
 obj.push(200)
 print(obj.stack)
 
-print(obj.balancExpression("([2 + 4 [3])")) # unbalanced
-print(obj.balancExpression("(<[{2 + 4 [3]}]>)")) # balanced
-print(obj.balancExpression("( 1 + 2 < 13[{ 4 + 9 + [5 {6}]}]>)")) # balanced
-print(obj.balancExpression("( 1 + 2 < 13[{ 4 + 9 + [5 {6}]]>)")) # unbalanced
-print(obj.balancExpression("1 + 2"))
-print(obj.balancExpression(""))
-print(obj.balancExpression("$"))
+print(obj.balanceExpression("([2 + 4 [3])")) ## unbalanced
+print(obj.balanceExpression("(<[{2 + 4 [3]}]>)")) ## balanced
+print(obj.balanceExpression("( 1 + 2 < 13[{ 4 + 9 + [5 {6}]}]>)")) ## balanced
+print(obj.balanceExpression("( 1 + 2 < 13[{ 4 + 9 + [5 {6}]]>)")) ## unbalanced
+print(obj.balanceExpression("1 + 2"))
+print(obj.balanceExpression(""))
+print(obj.balanceExpression("$"))
+print(obj.balanceExpression([]))
+print(obj.balanceExpression(")12 + 1("))
