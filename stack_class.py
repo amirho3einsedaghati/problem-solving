@@ -22,31 +22,31 @@ class stack:
         # O(1)
         self.stack= ''
         last= len(self.__list) - 1
-        self.__list[last]= item
+        self.__list[last]= item # inserts a item to top of stack
 
 
     def pop(self):
-        # O(1)
+        # O(n)
         li= []
         count= len(self.__list)
+
         i= 0
         while i != count - 1:
             li.append(self.__list[i])
             i += 1
 
         backup= self.__list
-        self.__list= li
-        return backup[i]
+        self.__list= li # delete a item from top of stack 
+        return backup[i] # and returns the deleted item from top of stack
         
 
-
     def peek(self):
-        # O(1)
+        # O(n)
         count= len(self.__list)
 
         for i in range(0, count):
             if i == count - 1:
-                return self.__list[i]
+                return self.__list[i] # returns a item of the top of stack without delete it
     
 
     def isEmpty(self):
@@ -71,42 +71,64 @@ class stack:
         return reversed
         
 
-    def balancExpression(self, string: str):
+    def balancExpression(self, string: str): # expression syntax checking
+        # O(n)
         self.__list= []
-        open_collectioin= ['(', '[', '{', '<']
-        close_stack= []
-        i= 0
+        open_collection= ['(', '[', '{', '<']
+        close_collection= [')', ']', '}', '>']
+        checking= ['(', '[', '{', '<', ')', ']', '}', '>']
+        close_stack= stack()
 
-        while string[i] in open_collectioin and i < len(string):
-            self.push(string[i])
-            i += 1
+        # linear search to insert the item to self.__list and checks if in received string there was not the items of list return balance 
+        for i in range(0, len(string)):  
+            if string[i] in open_collection:
+                self.push(string[i]) 
 
-        for index in range(0, len(string)): 
+            if string[i] not in checking:
+                return f"{string} : balanced"
+
+        for j in range(len(string)- 1, -1, -1): # linear search to insert the item to close_stack
+            if string[j] in close_collection:
+                close_stack.push(string[j])
+
+        index= 0
+        while index < len(string): # Linear search to check whether the structure of an expression is incorrect or not
             if self.peek() == '(':
-                if ')' in string:
+                if close_stack.peek() == ')':
                     self.pop()
+                    close_stack.pop()
+                    index += 1
                 else:
-                    return f"{string}: unbalanced"
+                    return f"{string} : unbalanced"
 
-            if self.peek() == '[':
-                if ']' in string:
+            elif self.peek() == '[':
+                if close_stack.peek() == ']':
                     self.pop()
+                    close_stack.pop()
+                    index += 1
                 else:
-                    return f"{string}: unbalanced"
+                    return f"{string} : unbalanced"
             
-            if self.peek() == '{':
-                if '}' in string:
+            elif self.peek() == '{':
+                if close_stack.peek() == '}':
                     self.pop()
+                    close_stack.pop()
+                    index += 1
                 else:
-                    return f"{string}: unbalanced"
+                    return f"{string} : unbalanced"
 
-            if self.peek() == '<':
-                if '>' in string:
+            elif self.peek() == '<':
+                if close_stack.peek() == '>':
                     self.pop()
+                    close_stack.pop()
+                    index += 1
                 else:
-                    return f"{string}: unbalanced"
+                    return f"{string} : unbalanced"
 
-        return f"{string}: balanced"
+            else:
+                index += 1
+
+        return f"{string} : balanced"
                 
 
 
@@ -138,4 +160,10 @@ obj.push(100)
 obj.push(200)
 print(obj.stack)
 
-print(obj.balancExpression("([2 + 4 [3])"))
+print(obj.balancExpression("([2 + 4 [3])")) # unbalanced
+print(obj.balancExpression("(<[{2 + 4 [3]}]>)")) # balanced
+print(obj.balancExpression("( 1 + 2 < 13[{ 4 + 9 + [5 {6}]}]>)")) # balanced
+print(obj.balancExpression("( 1 + 2 < 13[{ 4 + 9 + [5 {6}]]>)")) # unbalanced
+print(obj.balancExpression("1 + 2"))
+print(obj.balancExpression(""))
+print(obj.balancExpression("$"))
