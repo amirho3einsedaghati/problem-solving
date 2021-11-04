@@ -23,22 +23,23 @@ class stack:
         # O(1)
         self.stack= ''
         last= len(self.__list) - 1
-        self.__list[last]= item # inserts a item to top of stack
+        self.__list[last]= item # inserts a item to top of the stack
 
 
     def pop(self):
         # O(n)
+        if self.isEmpty(): return "stack is empty"
+
         li= []
         count= len(self.__list)
-
         i= 0
         while i != count - 1:
             li.append(self.__list[i])
             i += 1
 
         backup= self.__list
-        self.__list= li # delete a item from top of stack 
-        return backup[i] # and returns the deleted item from top of stack
+        self.__list= li # delete a item from top of the stack 
+        return backup[i] # and returns the deleted item from top of the stack
         
 
     def peek(self):
@@ -47,12 +48,12 @@ class stack:
 
         for i in range(0, count):
             if i == count - 1:
-                return self.__list[i] # returns a item of the top of stack without delete it
+                return self.__list[i] # returns a item of the top of the stack without delete it
     
 
     def isEmpty(self):
         # O(1)
-        return self.__list == []
+        return self.__list == [] # if a stack be full returns True
 
 
     def reverse(self, string): # return the reversed string 
