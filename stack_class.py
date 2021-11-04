@@ -70,6 +70,22 @@ class stack:
 
         return reversed
         
+    def __isOpenBracket(self, lefBra):
+        return lefBra == '(' or lefBra == '[' or lefBra == '{' or lefBra == '<'
+
+    def __isCloseBracket(self, rightBra):
+        return rightBra == ')' or rightBra == ']' or rightBra == '}' or rightBra == '>'
+
+    def __isBracketsMatch(self, right, left):
+        # return True or False
+        # True: are not match
+        # False: are match
+        return  (
+                (right is ')' and left is not '(') or
+                (right is '}' and left is not '{') or
+                (right is ']' and left is not '[') or 
+                (right is '>' and left is not '<')
+                )
 
     def balanceExpression(self, string: str): # expression syntax checking
         # solution 1: by one stack -> more optimized solution
@@ -79,26 +95,15 @@ class stack:
         if type(string) == str:
             self.__list= []
 
-            count_brackets= 0
             for item in string:
-                if item == '(' or item == '[' or item == '{' or item == '<': 
-                    count_brackets += 1
+                if self.__isOpenBracket(item): 
                     self.push(item)
                 
-                if item == ')' or item == ']' or item == '}' or item == '>':
+                if self.__isCloseBracket(item):
                     if self.isEmpty(): return "stack is empty"
-
-                    count_brackets += 1
-                    deleted= self.pop()
-                    if (
-                        (item is ')' and deleted is not '(') or
-                        (item is '}' and deleted is not '{') or
-                        (item is ']' and deleted is not '[') or 
-                        (item is '>' and deleted is not '<')
-                        ): return f"{string}: unbalanced" 
-
-            if count_brackets == 0:
-                return f"{string}: balanced" # the command is for covering states 2 + 3, $ and other special characters, ''
+                    leftBracket= self.pop()
+                    if (self.__isBracketsMatch(item, leftBracket)): 
+                        return f"{string}: unbalanced" 
 
             if self.isEmpty():
                 return f"{string}: balanced"
@@ -113,7 +118,6 @@ class stack:
         #     self.__list= []
         #     open_collection= ['(', '[', '{', '<']
         #     close_collection= [')', ']', '}', '>']
-        #     count_brackets= 0
         #     close_stack= stack()
 
         #     # linear search to insert the item to self.__list and checks if in received string there was not the items of list return balance 
@@ -129,28 +133,17 @@ class stack:
         #     while index < len(string): # Linear search to check whether the structure of an expression is incorrect or not
         #         if string[0] in self.__list:
         #             item= self.peek()
-        #             if item == '(' or item == '[' or item == '{' or item == '<':
-        #                     stack1= self.pop()
-        #                     stack2= close_stack.pop()
-        #                     if (
-        #                         (stack1 is '(' and stack2 is not ')') or
-        #                         (stack1 is '[' and stack2 is not ']') or
-        #                         (stack1 is '<' and stack2 is not '>') or
-        #                         (stack1 is '{' and stack2 is not '}')
-        #                     ): 
-        #                         return f"{string} : unbalanced"
-
+        #             if self.__isOpenBracket(item):
+        #                     open= self.pop()
+        #                     close= close_stack.pop()
+        #                     if self.__isBracketsMatch(close, open): return f"{string} : unbalanced"
         #                     index += 1
-        #                     count_brackets += 1 
 
         #         elif string[0] in close_stack.__list:
         #             return "stack is empty"
 
         #         else:
         #             index += 1
-
-        #     if count_brackets == 0:
-        #         return f"{string} : balanced"
 
         #     return f"{string} : balanced"
 
