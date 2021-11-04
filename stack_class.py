@@ -72,7 +72,7 @@ class stack:
         
 
     def balanceExpression(self, string: str): # expression syntax checking
-        # solution 1: by one stack
+        # solution 1: by one stack -> more optimized solution
         # O(n)
         # open bracket   -> push
         # close bracket  -> pop
@@ -81,52 +81,24 @@ class stack:
 
             count_brackets= 0
             for item in string:
-                if item == '(': 
+                if item == '(' or item == '[' or item == '{' or item == '<': 
                     count_brackets += 1
                     self.push(item)
                 
-                if item == ')':
-                    if self.isEmpty():
-                        return "stack is empty"
+                if item == ')' or item == ']' or item == '}' or item == '>':
+                    if self.isEmpty(): return "stack is empty"
 
                     count_brackets += 1
-                    self.pop()
-
-                if item == '[':
-                    count_brackets += 1
-                    self.push(item)
-                
-                if item == ']':
-                    if self.isEmpty():
-                        return "stack is empty"
-
-                    count_brackets += 1
-                    self.pop()
-
-                if item == '{':
-                    count_brackets += 1
-                    self.push(item)
-                
-                if item == '}':
-                    if self.isEmpty():
-                        return "stack is empty"
-
-                    count_brackets += 1
-                    self.pop()
-
-                if item == '<':
-                    count_brackets += 1
-                    self.push(item)
-                
-                if item == '>':
-                    if self.isEmpty():
-                        return "stack is empty"
-
-                    count_brackets += 1
-                    self.pop()
+                    deleted= self.pop()
+                    if (
+                        (item is ')' and deleted is not '(') or
+                        (item is '}' and deleted is not '{') or
+                        (item is ']' and deleted is not '[') or 
+                        (item is '>' and deleted is not '<')
+                        ): return f"{string}: unbalanced" 
 
             if count_brackets == 0:
-                return f"{string}: balanced"
+                return f"{string}: balanced" # the command is for covering states 2 + 3, $ and other special characters, ''
 
             if self.isEmpty():
                 return f"{string}: balanced"
@@ -144,12 +116,6 @@ class stack:
         #     count_brackets= 0
         #     close_stack= stack()
 
-        #     for item in string:
-        #         if item == ')' or item == ']' or item == '}' or item == '>':
-        #             if self.isEmpty():
-        #                 return "stack is empty"
-        #             count_brackets += 1
-
         #     # linear search to insert the item to self.__list and checks if in received string there was not the items of list return balance 
         #     for i in range(0, len(string)):  
         #         if string[i] in open_collection:
@@ -161,45 +127,24 @@ class stack:
 
         #     index= 0
         #     while index < len(string): # Linear search to check whether the structure of an expression is incorrect or not
-        #         if self.peek() == '(':
-        #             if close_stack.peek() == ')':
-        #                 self.pop()
-        #                 close_stack.pop()
-        #                 index += 1
-        #             else:
-        #                 return f"{string} : unbalanced"
+        #         if string[0] in self.__list:
+        #             item= self.peek()
+        #             if item == '(' or item == '[' or item == '{' or item == '<':
+        #                     stack1= self.pop()
+        #                     stack2= close_stack.pop()
+        #                     if (
+        #                         (stack1 is '(' and stack2 is not ')') or
+        #                         (stack1 is '[' and stack2 is not ']') or
+        #                         (stack1 is '<' and stack2 is not '>') or
+        #                         (stack1 is '{' and stack2 is not '}')
+        #                     ): 
+        #                         return f"{string} : unbalanced"
 
-        #             count_brackets += 1 
+        #                     index += 1
+        #                     count_brackets += 1 
 
-        #         elif self.peek() == '[':
-        #             if close_stack.peek() == ']':
-        #                 self.pop()
-        #                 close_stack.pop()
-        #                 index += 1
-        #             else:
-        #                 return f"{string} : unbalanced"
-                                            
-        #             count_brackets += 1
-
-        #         elif self.peek() == '{':
-        #             if close_stack.peek() == '}':
-        #                 self.pop()
-        #                 close_stack.pop()
-        #                 index += 1
-        #             else:
-        #                 return f"{string} : unbalanced"
-                                            
-        #             count_brackets += 1
-
-        #         elif self.peek() == '<':
-        #             if close_stack.peek() == '>':
-        #                 self.pop()
-        #                 close_stack.pop()
-        #                 index += 1
-        #             else:
-        #                 return f"{string} : unbalanced"
-                                            
-        #             count_brackets += 1
+        #         elif string[0] in close_stack.__list:
+        #             return "stack is empty"
 
         #         else:
         #             index += 1
@@ -249,3 +194,4 @@ print(obj.balanceExpression(""))
 print(obj.balanceExpression("$"))
 print(obj.balanceExpression([]))
 print(obj.balanceExpression(")12 + 1("))
+print(obj.balanceExpression("(12 + 1>"))
