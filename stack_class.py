@@ -4,7 +4,8 @@
 class stack:
     def __init__(self):
         self.__list= []
-
+        self.__leftBracket= ('(', '[', '{', '<')
+        self.__rightBracket= (')', ']', '}', '>')
 
     @property
     def stack(self):
@@ -70,22 +71,21 @@ class stack:
 
         return reversed
         
+
     def __isOpenBracket(self, lefBra):
-        return lefBra == '(' or lefBra == '[' or lefBra == '{' or lefBra == '<'
+        return self.__leftBracket.__contains__(lefBra)
+
 
     def __isCloseBracket(self, rightBra):
-        return rightBra == ')' or rightBra == ']' or rightBra == '}' or rightBra == '>'
+        return self.__rightBracket.__contains__(rightBra)
 
-    def __isBracketsMatch(self, right, left):
-        # return True or False
+
+    def __isBracketsMatch(self, left, right):
+        # returns True or False
         # True: are not match
         # False: are match
-        return  (
-                (right is ')' and left is not '(') or
-                (right is '}' and left is not '{') or
-                (right is ']' and left is not '[') or 
-                (right is '>' and left is not '<')
-                )
+        return  self.__leftBracket.index(left) is not self.__rightBracket.index(right)
+
 
     def balanceExpression(self, string: str): # expression syntax checking
         # solution 1: by one stack -> more optimized solution
@@ -101,8 +101,9 @@ class stack:
                 
                 if self.__isCloseBracket(item):
                     if self.isEmpty(): return "stack is empty"
+                    
                     leftBracket= self.pop()
-                    if (self.__isBracketsMatch(item, leftBracket)): 
+                    if (self.__isBracketsMatch(leftBracket, item)): 
                         return f"{string}: unbalanced" 
 
             if self.isEmpty():
@@ -116,17 +117,15 @@ class stack:
         # O(n)
         # if type(string) == str:
         #     self.__list= []
-        #     open_collection= ['(', '[', '{', '<']
-        #     close_collection= [')', ']', '}', '>']
         #     close_stack= stack()
 
         #     # linear search to insert the item to self.__list and checks if in received string there was not the items of list return balance 
         #     for i in range(0, len(string)):  
-        #         if string[i] in open_collection:
+        #         if string[i] in self.__leftBracket:
         #             self.push(string[i]) 
 
         #     for j in range(len(string)- 1, -1, -1): # linear search to insert the item to close_stack
-        #         if string[j] in close_collection:
+        #         if string[j] in self.__rightBracket:
         #             close_stack.push(string[j])
 
         #     index= 0
@@ -136,7 +135,7 @@ class stack:
         #             if self.__isOpenBracket(item):
         #                     open= self.pop()
         #                     close= close_stack.pop()
-        #                     if self.__isBracketsMatch(close, open): return f"{string} : unbalanced"
+        #                     if self.__isBracketsMatch(open, close): return f"{string} : unbalanced"
         #                     index += 1
 
         #         elif string[0] in close_stack.__list:
@@ -188,3 +187,4 @@ print(obj.balanceExpression("$"))
 print(obj.balanceExpression([]))
 print(obj.balanceExpression(")12 + 1("))
 print(obj.balanceExpression("(12 + 1>"))
+
