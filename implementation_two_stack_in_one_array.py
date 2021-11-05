@@ -8,7 +8,8 @@
 # isFull1()
 # isFull2()
 
-# answer: we have to create an array that implemented by two stack and is fill by two stack.
+# answer: 
+# we have to create an array that implemented by two stack and is fill by two stack.
 # stack 1: it fills array left to right. 
 # stack 2: if fills array right to left. 
 
@@ -23,10 +24,12 @@ class twoStack:
 
      
     def getlist(self):
+        # big O: O(1)
         return self.__list
     
 
     def push1(self, item):
+        # big O: O(1)
         if self.isFull1(): 
             return "stack is full"
 
@@ -35,6 +38,7 @@ class twoStack:
 
 
     def pop1(self): # to delete from first stack
+        # big O: O(1)
         if self.isEmpty1(): return "stack is empty"
         
         self.__top1 += -1
@@ -43,14 +47,17 @@ class twoStack:
      
 
     def isEmpty1(self):
+        # big O: O(1)
         return self.__top1 == -1 # if a stack be vacant returns True 
 
 
     def isFull1(self):
+        # big O: O(1)
         return self.__top1 + 1 == self.__top2 # if a stack be full returns True
 
 
     def push2(self, item):
+        # big O: O(1)
         if self.isFull2():
             return "stack is full"
         
@@ -59,6 +66,7 @@ class twoStack:
 
 
     def pop2(self): # to delete from first stack
+        # big O: O(1)
         if self.isEmpty2(): return "stack is empty"
 
         self.__top2 += 1
@@ -67,10 +75,12 @@ class twoStack:
     
 
     def isEmpty2(self):
+        # big O: O(1)
         return self.__top2 == self.__list.__len__() # if a stack be vacant returns True 
 
 
     def isFull2(self):
+        # big O: O(1)
         return self.__top2 - 1 == self.__top1 # if a stack be full returns True
 
 
