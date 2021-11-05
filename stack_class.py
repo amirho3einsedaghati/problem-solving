@@ -1,4 +1,5 @@
 # ================================================ implementation stack class ====================================
+# implement one stack by an array.
 
 
 class stack:
@@ -6,6 +7,7 @@ class stack:
         self.__list= []
         self.__leftBracket= ('(', '[', '{', '<')
         self.__rightBracket= (')', ']', '}', '>')
+
 
     @property
     def stack(self):
@@ -159,6 +161,7 @@ class minStack:
     
 
     def push(self, item):
+        # O(1)
         self.valueStack.push(item)
     
         if self.minStack.isEmpty():
@@ -169,6 +172,7 @@ class minStack:
     
 
     def pop(self):
+        # O(1)
         if self.valueStack.isEmpty():
             return "stack is empty"
 
@@ -180,7 +184,8 @@ class minStack:
         return top
 
 
-    def min(self): # constant time: big O: O(1)
+    def min(self): 
+        # constant time: big O: O(1)
         if self.minStack.isEmpty():
             return "stack is empty"
 
