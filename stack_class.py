@@ -23,23 +23,22 @@ class stack:
         # O(1)
         self.stack= ''
         last= len(self.__list) - 1
-        self.__list[last]= item # inserts a item to top of the stack
+        self.__list[last]= item # inserts a item to top of stack
 
 
     def pop(self):
         # O(n)
-        if self.isEmpty(): return "stack is empty"
-
         li= []
         count= len(self.__list)
+
         i= 0
         while i != count - 1:
             li.append(self.__list[i])
             i += 1
 
         backup= self.__list
-        self.__list= li # delete a item from top of the stack 
-        return backup[i] # and returns the deleted item from top of the stack
+        self.__list= li # delete a item from top of stack 
+        return backup[i] # and returns the deleted item from top of stack
         
 
     def peek(self):
@@ -48,12 +47,12 @@ class stack:
 
         for i in range(0, count):
             if i == count - 1:
-                return self.__list[i] # returns a item of the top of the stack without delete it
+                return self.__list[i] # returns a item of the top of stack without delete it
     
 
     def isEmpty(self):
         # O(1)
-        return self.__list == [] # if a stack be full returns True
+        return self.__list == []
 
 
     def reverse(self, string): # return the reversed string 
@@ -148,11 +147,50 @@ class stack:
         #     return f"{string} : balanced"
 
         # elif type(string) != str: 
-        #     return "please just enter a string"   
+        #     return "please just enter a string"  
+        # 
+
+
+# question: design a stack contains push, pop and min; that min method return the smallest value through constant time
+class minStack:
+    def __init__(self):
+        self.valueStack= stack()
+        self.minStack= stack()
+    
+
+    def push(self, item):
+        self.valueStack.push(item)
+    
+        if self.minStack.isEmpty():
+            self.minStack.push(item)
+        
+        elif item < self.minStack.peek():
+            self.minStack.push(item)
+    
+
+    def pop(self):
+        if self.valueStack.isEmpty():
+            return "stack is empty"
+
+        top= self.valueStack.pop()
+
+        if top == self.minStack.peek():
+            self.minStack.pop()
+        
+        return top
+
+
+    def min(self): # constant time: big O: O(1)
+        if self.minStack.isEmpty():
+            return "stack is empty"
+
+        return self.minStack.peek()
+
 
 # ================================================ create some objects ====================================
 
 
+print('========== Stack =========')
 obj= stack()
 
 print(obj.isEmpty())
@@ -178,6 +216,7 @@ obj.push(100)
 obj.push(200)
 print(obj.stack)
 
+print('===================')
 print(obj.balanceExpression("([2 + 4 [3])")) ## unbalanced
 print(obj.balanceExpression("(<[{2 + 4 [3]}]>)")) ## balanced
 print(obj.balanceExpression("( 1 + 2 < 13[{ 4 + 9 + [5 {6}]}]>)")) ## balanced
@@ -188,4 +227,26 @@ print(obj.balanceExpression("$"))
 print(obj.balanceExpression([]))
 print(obj.balanceExpression(")12 + 1("))
 print(obj.balanceExpression("(12 + 1>"))
+
+print('========== minStack =========')
+instance= minStack()
+print(instance.min())
+
+instance.push(10)
+instance.push(5)
+instance.push(30)
+instance.push(6)
+print(instance.min())
+
+print('------------')
+print(instance.pop())
+print(instance.min())
+
+print('------------')
+print(instance.pop())
+print(instance.min())
+
+print('------------')
+print(instance.pop())
+print(instance.min())
 
