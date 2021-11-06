@@ -5,6 +5,7 @@
 class stack:
     def __init__(self):
         self.__list= []
+        self.__top= -1
         self.__leftBracket= ('(', '[', '{', '<')
         self.__rightBracket= (')', ']', '}', '>')
 
@@ -24,32 +25,50 @@ class stack:
     def push(self, item):
         # O(1)
         self.stack= ''
+        self.__top += 1
         last= len(self.__list) - 1
         self.__list[last]= item # inserts a item to top of stack
 
 
     def pop(self):
+        # solution 1: 
+        # big O: O(1)
+        if self.isEmpty():
+            return "stack is empty"
+        
+        self.__top += (-1)
+        delTop= self.__list.pop()
+        return delTop
+
+        # solution 2: 
         # O(n)
-        li= []
-        count= len(self.__list)
+        # li= []
+        # count= len(self.__list)
 
-        i= 0
-        while i != count - 1:
-            li.append(self.__list[i])
-            i += 1
+        # i= 0
+        # while i != count - 1:
+        #     li.append(self.__list[i])
+        #     i += 1
 
-        backup= self.__list
-        self.__list= li # delete a item from top of stack 
-        return backup[i] # and returns the deleted item from top of stack
+        # backup= self.__list
+        # self.__list= li # delete a item from top of stack 
+        # return backup[i] # and returns the deleted item from top of stack
         
 
     def peek(self):
-        # O(n)
-        count= len(self.__list)
+        # solution 1: 
+        # big O: O(1)
+        if self.isEmpty(): return "stack is empty"
 
-        for i in range(0, count):
-            if i == count - 1:
-                return self.__list[i] # returns a item of the top of stack without delete it
+        return self.__list[self.__top]
+
+        # solution 2: 
+        # O(n)
+        # count= len(self.__list)
+
+        # for i in range(0, count):
+        #     if i == count - 1:
+        #         return self.__list[i] # returns a item of the top of stack without delete it
     
 
     def isEmpty(self):
@@ -90,7 +109,7 @@ class stack:
 
 
     def balanceExpression(self, string: str): # expression syntax checking
-        # solution 1: by one stack -> more optimized solution
+        # solution 1: implemented by one stack -> more optimized solution
         # O(n)
         # open bracket   -> push
         # close bracket  -> pop
@@ -115,7 +134,8 @@ class stack:
 
         return "please just enter a string" 
 
-        # solution 2: by two stacks
+        # solution 2: implemented by two stacks 
+        # note: it works if you use the solution of the second peek and pop
         # O(n)
         # if type(string) == str:
         #     self.__list= []
@@ -195,7 +215,7 @@ class minStack:
 # ================================================ create some objects ====================================
 
 
-print('========== Stack =========')
+print('======================================= Stack =================================')
 obj= stack()
 
 print(obj.isEmpty())
@@ -215,6 +235,7 @@ print(x) # 30
 print(obj.peek())
 print(obj.isEmpty())
 
+print('===================')
 print(obj.reverse("amirali"))
 print(obj.stack)
 obj.push(100)
@@ -233,7 +254,7 @@ print(obj.balanceExpression([]))
 print(obj.balanceExpression(")12 + 1("))
 print(obj.balanceExpression("(12 + 1>"))
 
-print('========== minStack =========')
+print('======================================= minStack =================================')
 instance= minStack()
 print(instance.min())
 
