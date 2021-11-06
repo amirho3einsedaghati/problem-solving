@@ -1,6 +1,8 @@
-# average the 4 interger number:
 
-# raveshe 1 (dynamic):
+
+# solution 1 (dynamic):
+# prints the average of the entered integer numbers
+
 numbers= map(int,input("please enter the 4 numbers:").split())
 numbers= list(numbers)
 
@@ -14,7 +16,11 @@ def avg(li):
 
 avg(numbers)
 
-# ravesh 2 (static):
+
+
+# solution 2 (static): 
+# prints the average of the 4 integer numbers
+
 # a, b, c, d= map(int,input("please enter the 4 numbers:").split())
 
 # def avg(a, b, c, d):
