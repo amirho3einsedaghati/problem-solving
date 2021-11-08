@@ -44,24 +44,33 @@ class stack:
 
 class Queue:
     def __init__(self):
-        self.__valueStack= stack()
-        self.__queueStack= stack()
+        self.__valueStack= stack() # it's just for the enqueue method
+        self.__queueStack= stack() # it's just for dequeue method
+        
 
-    
+    def getEnqueue(self):
+        return self.__valueStack._stack__list
+
+
+    def getDequeue(self):
+        return self.__queueStack._stack__list
+
+
     def enQueue(self, item):
         # big O: O(1)
         self.__valueStack.push(item)
+        # print(f"{self.__valueStack._stack__list}")
 
 
     def deQueue(self):
-        # big O: O(1)
+        # big O: O(n)
         self.__reverse()
         frontQueue= self.__queueStack.pop()
         return frontQueue
         
 
     def __reverse(self):
-        for i in range(len(self.__valueStack._stack__list) - 1, -1, -1):
+        while not self.__valueStack.isEmpty():
             self.__queueStack.push(self.__valueStack.pop())
 
 
@@ -74,9 +83,24 @@ obj.enQueue(10)
 obj.enQueue(20)
 obj.enQueue(30)
 obj.enQueue(40)
+print(obj.getEnqueue())
 
+print('====== delete of the item of the front of the queue ======')
 print(obj.deQueue())
 print(obj.deQueue())
 print(obj.deQueue())
 print(obj.deQueue())
 print(obj.deQueue())
+print(obj.getDequeue())
+
+obj.enQueue(50)
+obj.enQueue(60)
+obj.enQueue(70)
+print(obj.getEnqueue())
+
+print('====== delete of the item of the front of the queue ======')
+print(obj.deQueue())
+print(obj.deQueue())
+print(obj.getDequeue())
+
+
