@@ -1,5 +1,5 @@
 # ================================================ implementation priority queue ====================================
-# implement a priority queue with static array
+# implement a priority queue with array
 
 from typing import Iterable
 
@@ -38,7 +38,7 @@ class priorityQueue:
         lis.append(min)
         i= 1
         while i < len(li):
-            if li[i] < min:
+            if li[i] <= min:
                 min= li[i]
                 lis.insert(i - i, min)
                 i += 1
@@ -115,5 +115,9 @@ obj.add(9)
 obj.add(15)
 obj.add(3)
 obj.add(5)
+print(obj.Queue)
+
+obj.add(19)
+obj.add(3)
 print(obj.Queue)
 
