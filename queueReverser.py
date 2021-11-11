@@ -1,0 +1,102 @@
+# ================================================ queueReverser ====================================
+# problem: if we had an integer number like k and an integer queue like Q, How to reverse the list to the Kst element?
+
+
+class Queue:
+    def __init__(self):
+        self.__list= []
+        self.__end= -1 # self.__end points to the end of the queue 
+        self.__start= -1 # self.__start points to the front of the queue 
+        # self.__k= k
+
+
+    @property
+    def queue(self):
+        return self.__list
+
+
+    @queue.setter
+    def queue(self, val):
+        self.__list.append(val)
+
+
+    def add(self, item): # add method is like enqueue that adds an item to the end of the queue
+        # big O: O(1)
+        self.queue= ""
+        self.__end += 1
+        self.__list[self.__end]= item
+
+
+    def remove(self): # remove method is like dequeue that deletes an item from the front of the queue and returns the value of it
+        # big O: O(1)
+        if self.isEmpty():
+            return "queue is empty"
+
+        self.__start += 1
+        frontQueue= self.__list.pop(self.__start)
+        self.__start= -1
+        return frontQueue
+
+
+    def isEmpty(self): # checks queue is empty or not 
+        # big O: O(1)
+        return self.__list == []
+
+
+    def __addItmesToQueue(self, item):
+        self.add(item)
+
+
+    def __resetEnd(self):
+        self.__end= len(self.__list) -1
+
+
+    def __resetStart(self):
+        self.__start= -1
+
+
+    def __difference_length_from_k(self, k):
+        return len(self.__list) - k
+
+
+    def reverse(self, k: int):
+        # big O: O(n)
+        # if we suppose the self.__list be equal [10, 20, 30, 40, 50, 60, 70] and the received k be equal 3
+        newQueue= Queue()
+
+        for i in range(len(self.queue) - 1, -1, -1): # newQueue: [70, 60, 50, 40, 30, 20, 10]
+            if i > k - 1:
+                newQueue.__addItmesToQueue(self.queue[i])
+
+            elif i <= k - 1:
+                newQueue.__addItmesToQueue(self.queue[i])
+
+        li= []
+        for i in range(0, newQueue.__difference_length_from_k(k)): # newQueue: [30, 20, 10], li: [70, 60, 50, 40]
+            newQueue.__resetStart()
+            li.append(newQueue.remove())
+        
+        newQueue.__resetEnd()
+        for i in range(len(li) -1, -1, -1): # newQueue: [30, 20, 10, 40, 50, 60, 70]
+            newQueue.add(li[i])
+
+        self.__list= newQueue.__list
+
+
+# ================================================ create some objects ====================================
+
+
+obj= Queue()
+
+obj.add(10)
+obj.add(20)
+obj.add(30)
+obj.add(40)
+obj.add(50)
+obj.add(60)
+obj.add(70)
+print(obj.queue)
+
+obj.reverse(3)
+print(obj.queue)
+
