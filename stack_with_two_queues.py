@@ -64,8 +64,8 @@ class Queue:
 
 class Stack:
     def __init__(self):
-        self.__queue1= Queue()
-        self.__queue2= Queue()
+        self.__queue1= Queue() # we need the __queue1 attribute for insert the received items from push method to queue 1
+        self.__queue2= Queue() # we need the __queue2 attribute for remove the item from the end of the queue 1, like a stack, can be removed an item from the end of the list like a stack.  
 
 
     def getStack(self):
