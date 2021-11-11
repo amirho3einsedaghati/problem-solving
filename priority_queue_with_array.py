@@ -102,10 +102,19 @@ class PriorityQueue:
 
     def remove(self):
         # big O: O(1)
+        if self.isEmpty():
+            print("priority queue is empty!")
+        
         self.__front += 1
         small= self.__list.pop(self.__front)
         self.__front= -1
         return  small
+
+
+    def isEmpty(self):
+        # big O: O(1)
+        return self.__list == []
+
 
 # ================================================ create some objects ====================================
 
