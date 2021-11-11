@@ -8,7 +8,7 @@ class priorityQueue:
     def __init__(self, arrayCapacity):
         self.__list= [0] * arrayCapacity
         self.__countter= 0
-        
+        self.__front= -1
 
     @property
     def Queue(self):
@@ -16,7 +16,8 @@ class priorityQueue:
 
 
     @Queue.setter
-    def Queue(self, val: Iterable[str]):
+    def Queue(self, val: Iterable[str]): 
+    # this method by adding item to static array, changes size and turns the static attribute of objects to a dynamic attribute.
         for i in range(0, len(val)):
             self.__list.append(val[i])
         
@@ -31,6 +32,7 @@ class priorityQueue:
 
 
     def __sortpriorityQueue(self, li: list):
+        # this method first gets the created queue, and then sorts the items of the queue from small to large.
         lis= []
         min= li[0]
         lis.append(min)
@@ -46,11 +48,20 @@ class priorityQueue:
                 i += 1
 
         final= self.__displacement_items(lis)
-            
         return final
 
 
-    def __displacement_items(self, l: list):
+    def __displacement_items(self, l: list): # checks the items and then if the items weren't in the correct place, changes the place of them. 
+        # lis= l
+        # length= len(lis)
+        # for i in range(length - 1, -1, -1):
+        #     if lis[i] < lis[i - 1]:
+        #         copy= lis[i - 1]
+        #         lis[i - 1]= lis[i]
+        #         lis[i]= copy
+
+        # return lis
+
         lis= l
         length= len(lis) - 1
 
@@ -77,14 +88,14 @@ class priorityQueue:
         return lis
 
 
-    def add(self, item):
+    def add(self, item): # the method, adds an item to a dynamic array, li .
         li= []
         while True:
             if li == []:
                 li.append(item)
                 break
 
-            if li != [] and li[self.__countter - 1] >= item: #  and li[self.__countter - 1] > item
+            if li != [] and li[self.__countter - 1] >= item:
                 li.append(item)
                 break
              
