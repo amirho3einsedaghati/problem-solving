@@ -4,19 +4,20 @@
 from typing import Iterable
 
 
-class priorityQueue:
+class PriorityQueue:
     def __init__(self, arrayCapacity):
         self.__list= [0] * arrayCapacity
         self.__countter= 0
         self.__front= -1
 
     @property
-    def Queue(self):
+    def priorityQueue(self):
         return self.__list
 
 
-    @Queue.setter
-    def Queue(self, val: Iterable[str]): 
+    @priorityQueue.setter
+    def priorityQueue(self, val: Iterable[str]): 
+    # big O: O(n)
     # this method by adding item to static array, changes size and turns the static attribute of objects to a dynamic attribute.
         for i in range(0, len(val)):
             self.__list.append(val[i])
@@ -33,6 +34,7 @@ class priorityQueue:
 
     def __sortpriorityQueue(self, li: list):
         # this method first gets the created queue, and then sorts the items of the queue from small to large.
+        # big O: O(n)
         lis= []
         min= li[0]
         lis.append(min)
@@ -51,17 +53,8 @@ class priorityQueue:
         return final
 
 
-    def __displacement_items(self, l: list): # checks the items and then if the items weren't in the correct place, changes the place of them. 
-        # lis= l
-        # length= len(lis)
-        # for i in range(length - 1, -1, -1):
-        #     if lis[i] < lis[i - 1]:
-        #         copy= lis[i - 1]
-        #         lis[i - 1]= lis[i]
-        #         lis[i]= copy
-
-        # return lis
-
+    def __displacement_items(self, l: list): # checks the items and then if the items weren't in the correct place, changes the place of them.
+        # big O: O(1)
         lis= l
         length= len(lis) - 1
 
@@ -88,7 +81,8 @@ class priorityQueue:
         return lis
 
 
-    def add(self, item): # the method, adds an item to a dynamic array, li .
+    def add(self, item): # the method, adds an item to a dynamic array, li.
+        # big O: O(n)
         li= []
         while True:
             if li == []:
@@ -103,21 +97,32 @@ class priorityQueue:
                 break
         
         self.__countter += 1
-        self.Queue= li
+        self.priorityQueue= li
 
-        
+
+    def remove(self):
+        # big O: O(1)
+        self.__front += 1
+        small= self.__list.pop(self.__front)
+        self.__front= -1
+        return  small
+
 # ================================================ create some objects ====================================
 
 
-obj= priorityQueue(5)
+obj= PriorityQueue(5)
 obj.add(16)
 obj.add(9)
 obj.add(15)
 obj.add(3)
 obj.add(5)
-print(obj.Queue)
+print(obj.priorityQueue)
+obj.remove()
+print(obj.priorityQueue)
 
 obj.add(19)
 obj.add(3)
-print(obj.Queue)
+print(obj.priorityQueue)
+obj.remove()
+print(obj.priorityQueue)
 
