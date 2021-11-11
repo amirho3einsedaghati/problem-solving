@@ -10,6 +10,7 @@ class PriorityQueue:
         self.__countter= 0
         self.__front= -1
 
+
     @property
     def priorityQueue(self):
         return self.__list
@@ -18,7 +19,7 @@ class PriorityQueue:
     @priorityQueue.setter
     def priorityQueue(self, val: Iterable[str]): 
     # big O: O(n)
-    # this method by adding item to static array, changes size and turns the static attribute of objects to a dynamic attribute.
+    # this method by adding each item to a static array and shifting the each item to the left, can change the size and turn the static attribute of objects to a dynamic attribute.
         for i in range(0, len(val)):
             self.__list.append(val[i])
         
@@ -96,8 +97,8 @@ class PriorityQueue:
             else:
                 break
         
-        self.__countter += 1
         self.priorityQueue= li
+        self.__countter += 1
 
 
     def remove(self):
