@@ -1,5 +1,7 @@
-# ================================================ implementation stack class ====================================
-# implement a queue by the stack structure 
+# ================================================ implementation queue with stack ====================================
+# problem: implement a queue by the stack structure that covers followig method:
+# enqueue(), dequeue()
+
 
 class stack:
     def __init__(self):
@@ -42,7 +44,7 @@ class stack:
         return self.__list == []
 
 
-class Queue:
+class stackQueue:
     def __init__(self):
         self.__valueStack= stack() # it's just for the enqueue method
         self.__queueStack= stack() # it's just for dequeue method
@@ -77,7 +79,7 @@ class Queue:
 # ================================================ create some objects ====================================
 
 
-obj= Queue()
+obj= stackQueue()
 
 obj.enQueue(10)
 obj.enQueue(20)
