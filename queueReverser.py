@@ -2,12 +2,11 @@
 # problem: if we had an integer number like k and an integer queue like Q, How to reverse the list to the Kst element?
 
 
-class Queue:
+class QueueReverser:
     def __init__(self):
         self.__list= []
         self.__end= -1 # self.__end points to the end of the queue 
         self.__start= -1 # self.__start points to the front of the queue 
-        # self.__k= k
 
 
     @property
@@ -62,7 +61,7 @@ class Queue:
     def reverse(self, k: int):
         # big O: O(n)
         # if we suppose the self.__list be equal [10, 20, 30, 40, 50, 60, 70] and the received k be equal 3
-        newQueue= Queue()
+        newQueue= QueueReverser()
 
         for i in range(len(self.queue) - 1, -1, -1): # newQueue: [70, 60, 50, 40, 30, 20, 10]
             if i > k - 1:
@@ -86,7 +85,7 @@ class Queue:
 # ================================================ create some objects ====================================
 
 
-obj= Queue()
+obj= QueueReverser()
 
 obj.add(10)
 obj.add(20)
