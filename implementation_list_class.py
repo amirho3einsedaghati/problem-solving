@@ -4,7 +4,6 @@ from typing import Iterable
 class array:
     def __init__(self):
         self.__args_list= [] 
-        self.__list= []
         self.__intersection= [] 
 
 
@@ -235,6 +234,7 @@ instance.show_list()
 # # # # print("=====================")
 # # # # instance.show_list()
 # print(instance.max())
+# print(instance.min())
 
 # instance.append_or_extend_to_list([20,12,34,10,50,28])
 # instance.append_or_extend_to_list(100)
