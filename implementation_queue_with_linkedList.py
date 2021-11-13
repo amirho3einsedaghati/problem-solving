@@ -3,9 +3,6 @@
 # enqueue(), dequeue(), peek(), size(), isEmpty()
 
 
-from types import NoneType
-
-
 class Node:
     def __init__(self,value=None): # this calss, create a node with recieved value. 
         self.value= value
@@ -195,8 +192,8 @@ print(obj.size())
 print(obj.isEmpty())
 
 print('---------')
-print(obj.peek())
 print(obj.deQueue())
+print(obj.peek())
 print(obj.getQueue())
 print(obj.size())
 print(obj.isEmpty())
