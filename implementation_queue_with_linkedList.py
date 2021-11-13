@@ -8,6 +8,7 @@ class Node:
         self.value= value
         self.__address= None # meaning: the self points to the last node 
    
+   
     @property
     def address(self):
         # big O: O(1)
@@ -42,7 +43,6 @@ class linkedList(Node):
         except:
             self._linkedList__head= firstNode
         
-
 
     def __getList(self): # create and return a linked list
         # big O: O(1)
@@ -129,7 +129,7 @@ class linkedList(Node):
 class linkedListQueue:
     def __init__(self):
         self.__queue= linkedList()
-        self.__queue.head= Node()
+        self.__queue.head= Node() 
         
 
     def getQueue(self):
@@ -143,7 +143,7 @@ class linkedListQueue:
     def enQueue(self, item):
         self.__queue.addLast(item)
 
-        if self.__hasQueueNone(self.__queue.getConvertedLinkedList()):
+        if self.__hasQueueNone(self.__queue.getConvertedLinkedList()): # we put this condition beacause of the Node class, conisders the value of None for the value attribute of self.__queue.head
             self.deQueue()
             
 
