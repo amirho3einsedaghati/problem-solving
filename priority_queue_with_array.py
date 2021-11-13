@@ -106,33 +106,56 @@ class PriorityQueue:
         if self.isEmpty():
             print("priority queue is empty!")
         
-        self.__front += 1
-        small= self.__list.pop(self.__front)
-        self.__front= -1
-        return  small
+        elif self.__list[0] == 0:
+            print("None")
+
+        else:
+            self.__front += 1
+            small= self.__list.pop(self.__front)
+            self.__front= -1
+            return  small
+
+
+    def peek(self):
+        # big O: O(1)
+        if self.isEmpty():
+            print("priority queue is empty!")
+        
+        elif self.__list[0] == 0:
+            print("None")
+
+        else:
+            self.__front += 1
+            small= self.__list[self.__front]
+            self.__front= -1
+            return  small
 
 
     def isEmpty(self):
         # big O: O(1)
-        return self.__list == []
+        return self.__list == [] or self.__list[0] == 0
 
 
 # ================================================ create some objects ====================================
 
 
 obj= PriorityQueue(5)
+print(obj.remove())
+print(obj.peek())
 obj.add(16)
 obj.add(9)
 obj.add(15)
 obj.add(3)
 obj.add(5)
 print(obj.priorityQueue)
-obj.remove()
+print(obj.remove())
+print(obj.peek())
 print(obj.priorityQueue)
 
 obj.add(19)
 obj.add(3)
 print(obj.priorityQueue)
-obj.remove()
+print(obj.remove())
+print(obj.peek())
 print(obj.priorityQueue)
 
