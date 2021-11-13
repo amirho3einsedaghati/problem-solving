@@ -58,28 +58,55 @@ class QueueReverser:
         return len(self.__list) - k
 
 
-    def reverse(self, k: int):
-        # big O: O(n)
-        # if we suppose the self.__list be equal [10, 20, 30, 40, 50, 60, 70] and the received k be equal 3
-        newQueue= QueueReverser()
+# solution 1: if the reverse method gets one argument.
+    # def reverse(self, k: int):
+    #     # big O: O(n)
+    #     # if we suppose the self.__list be equal [10, 20, 30, 40, 50, 60, 70] and the received k be equal 3
+    #     newQueue= QueueReverser()
 
-        for i in range(len(self.queue) - 1, -1, -1): # newQueue: [70, 60, 50, 40, 30, 20, 10]
-            if i > k - 1:
-                newQueue.__addItmesToQueue(self.queue[i])
+    #     for i in range(len(self.queue) - 1, -1, -1): # newQueue: [70, 60, 50, 40, 30, 20, 10]
+    #         if i > k - 1:
+    #             newQueue.__addItmesToQueue(self.queue[i])
 
-            elif i <= k - 1:
-                newQueue.__addItmesToQueue(self.queue[i])
+    #         elif i <= k - 1:
+    #             newQueue.__addItmesToQueue(self.queue[i])
 
-        li= []
-        for i in range(0, newQueue.__difference_length_from_k(k)): # newQueue: [30, 20, 10], li: [70, 60, 50, 40]
-            newQueue.__resetStart()
-            li.append(newQueue.remove())
+    #     li= []
+    #     for i in range(0, newQueue.__difference_length_from_k(k)): # newQueue: [30, 20, 10], li: [70, 60, 50, 40]
+    #         newQueue.__resetStart()
+    #         li.append(newQueue.remove())
         
-        newQueue.__resetEnd()
-        for i in range(len(li) -1, -1, -1): # newQueue: [30, 20, 10, 40, 50, 60, 70]
-            newQueue.add(li[i])
+    #     newQueue.__resetEnd()
+    #     for i in range(len(li) -1, -1, -1): # newQueue: [30, 20, 10, 40, 50, 60, 70]
+    #         newQueue.add(li[i])
 
-        self.__list= newQueue.__list
+    #     return newQueue.__list
+
+
+# solution 2: if the reverse method gets two argument.
+    def reverse(self, queue, k):
+        # big O: O(n)
+        que= QueueReverser()
+        que.__list= queue
+        li = []
+
+        for i in range(0, k):
+            que.__resetStart()
+            li.append(que.remove())
+
+        que.__resetEnd()
+        while li != []:
+            que.__addItmesToQueue(li.pop())
+
+
+        for i in range(0, que.__difference_length_from_k(k)):
+            que.__resetStart()
+            front=que.remove()
+            que.__resetEnd()
+            que.add(front)
+
+
+        return que.__list
 
 
 # ================================================ create some objects ====================================
@@ -96,6 +123,7 @@ obj.add(60)
 obj.add(70)
 print(obj.queue)
 
-obj.reverse(3)
+# print(obj.reverse(3)) # this object is for the first solution of the reverse method
+print(obj.reverse([10,20,30,40,50], 4)) # this object is for the second solution of the reverse method
 print(obj.queue)
 
