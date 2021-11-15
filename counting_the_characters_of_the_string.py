@@ -80,22 +80,27 @@ class main:
                 li.append(item)
         
         modList= []
-        for item in li:
-            index= countChars.index(item)
-            modList.append(dictVal[index])
-            dictVal.pop(index)
+        if li[0] is not 1:
+            for item in li:
+                index= countChars.index(item)
+                modList.append(dictVal[index])
+                dictVal.pop(index)
 
-        for item in modList:
-            if item == modList[0]:
-                print(f"the mode of this {self.__args[0]} is :", end="\t")
-                
-            if item == modList[len(modList) - 1]:
-                print(f"{item}", end=" ")
+            for item in modList:
+                if item == modList[0]:
+                    print(f"the mode of this {self.__args[0]} is :", end="\t")
+                    
+                if item == modList[len(modList) - 1]:
+                    print(f"{item}", end=" ")
 
-            else:
-                print(f"{item}", end="|")
-        
-        print("\n")
+                else:
+                    print(f"{item}", end="|")
+            
+            print("\n")
+
+        else:
+            print("all of the character have repeated just one time")
+
 
         # if we want to show,the first value of the mod, we should using the following solution:
         # maximum=max(countChars)
@@ -121,3 +126,7 @@ obj3= main(["A Just Judgement"])
 print(obj3.firstNonRepetitiveChar())
 obj3.mod()
 
+print('------------------')
+obj4= main(["A J"])
+print(obj4.firstNonRepetitiveChar())
+obj4.mod()
