@@ -64,14 +64,44 @@ class main:
 
 
     def mod(self):
+        # if we want to show the all of the mods, we should using this solution:
         dictionary= self.__createDictWithArgs()
         dictVal= dictionary.values()
         dictVal= self.__convertDictVal(dictVal)
         countChars= self.__countCharacters()
 
-        maximum=max(countChars)
-        indexMax= countChars.index(maximum)
-        return f"mode '{self.__args[0]}': {dictVal[indexMax]}"
+
+        li= [0]
+        for item in countChars:
+            if li[0] < item:
+                li.clear()
+                li.append(item)
+            elif li[0] == item:
+                li.append(item)
+        
+        modList= []
+        for item in li:
+            index= countChars.index(item)
+            modList.append(dictVal[index])
+            dictVal.pop(index)
+
+        for item in modList:
+            if item == modList[0]:
+                print(f"the mode of this {self.__args[0]} is :", end="\t")
+                
+            if item == modList[len(modList) - 1]:
+                print(f"{item}", end=" ")
+
+            else:
+                print(f"{item}", end="|")
+        
+        print("\n")
+
+        # if we want to show,the first value of the mod, we should using the following solution:
+        # maximum=max(countChars)
+        # indexMax= countChars.index(maximum)
+        # return f"mode '{self.__args[0]}': {dictVal[indexMax]}"
+
 
 
 # ============================================================== create some objects =========================================
@@ -79,15 +109,15 @@ class main:
 
 obj1= main(["A Green Apple"])
 print(obj1.firstNonRepetitiveChar())
-print(obj1.mod())
+obj1.mod()
 
 print('------------------')
 obj2= main(["The Just Judge"])
 print(obj2.firstNonRepetitiveChar())
-print(obj2.mod())
+obj2.mod()
 
 print('------------------')
 obj3= main(["A Just Judgement"])
 print(obj3.firstNonRepetitiveChar())
-print(obj3.mod())
+obj3.mod()
 
