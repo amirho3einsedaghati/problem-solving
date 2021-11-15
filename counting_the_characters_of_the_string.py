@@ -137,7 +137,6 @@
 
 
 # solution 2: best solution 
-
 def firstNonRepetitiveChar(args: str):
     string= args
     li= [0] * len(string)
@@ -157,3 +156,32 @@ def firstNonRepetitiveChar(args: str):
             return item[0]
 
     return f"there is no Non-repetitive characters at the: '{string}'"
+
+
+# solution 3:
+# def firstNonRepetitiveChar(args: str):
+#     string= args
+#     dictionary= dict()
+
+#     for i in range(0, len(string)):
+#         dictionary.update({string[i]: 0})
+
+#     listVals= list(dictionary.values())
+#     listKeys= list(dictionary.keys())
+
+#     for i in range(0, len(string)):
+#         if string[i] in listKeys:
+#             targetString= listKeys.index(string[i])
+#             listVals[targetString] += 1
+
+#     for i in range(0, len(listKeys)):
+#         if listVals[i] == 1:
+#             return listKeys[i]
+    
+#     return f"there is no Non-repetitive characters at the: '{string}'"
+
+
+print(firstNonRepetitiveChar("A Green Apple"))
+print(firstNonRepetitiveChar("The Just Judge"))
+print(firstNonRepetitiveChar("A Just Judgement"))
+print(firstNonRepetitiveChar("The The "))
