@@ -50,3 +50,29 @@ print(obj2.firstCharMoreRepeatOne())
 
 obj3= main("Just judgement")
 print(obj3.firstCharMoreRepeatOne())
+
+
+# ================================ solution 2 ====================
+# solution 2: using with function statement
+
+# def firstCharMoreRepeatOne(string: str):
+#     argList= list(string)
+#     charsSet= set()
+
+#     for item in argList:
+#         charsSet.add(item)
+
+#     setList= list(charsSet)
+
+#     for item in charsSet:
+#         argList.remove(item)
+
+#     firstItem= argList[0]
+#     firstItemIndex= setList.index(firstItem)
+
+#     return setList[firstItemIndex]
+
+# print(firstCharMoreRepeatOne("the green apple"))
+# print(firstCharMoreRepeatOne("Just Judge"))
+# print(firstCharMoreRepeatOne("Just judgement"))
+
