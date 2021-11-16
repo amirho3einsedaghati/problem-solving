@@ -4,17 +4,12 @@
 
 # solution 1:
 # class main:
-#     def __init__(self, args= [str]):
+#     def __init__(self, args= str):
 #         self.__args= args
 
 
-#     def __unpackStringFromList(self):
-#         string= self.__args[0]
-#         return string
-
-
 #     def __createDictWithArgs(self):
-#         string= self.__unpackStringFromList()
+#         string= self.__args
 #         dictionary= dict()
 
 #         for i in range(0, len(string)):
@@ -35,7 +30,7 @@
 
 
 #     def __countCharacters(self):
-#         string= self.__unpackStringFromList()
+#         string= self.__args
 #         dictionary= self.__createDictWithArgs()
 #         listItems= self.__convertDictItmes()
 
@@ -63,7 +58,8 @@
 #             if countChars[i] == 1:
 #                 return f"the first Non-repetitive characters: {dictVal[i]}"
 
-#         return f"there is no Non-repetitive characters at the: '{self.__args[0]}'"
+#         return f"all of the characters are repeated more than one time in the string of '{self.__args}'"
+
 
 
 #     def mod(self):
@@ -89,7 +85,7 @@
 
 #         for item in modList:
 #             if item == modList[0]:
-#                 print(f"the mode of this '{self.__args[0]}' is :", end=" ")
+#                 print(f"the mode of this '{self.__args}' is :", end=" ")
                 
 #             if item == modList[len(modList) - 1]:
 #                 print(f"{item}", end=" ")
@@ -102,34 +98,34 @@
 #         # if we want to show,the first value of the mod, we should using the following solution:
 #         # maximum=max(countChars)
 #         # indexMax= countChars.index(maximum)
-#         # return f"mode '{self.__args[0]}': {dictVal[indexMax]}"
+#         # return f"mode '{self.__args}': {dictVal[indexMax]}"
 
 
 
 # # ============================================================== create some objects =========================================
 
 
-# obj1= main(["A Green Apple"])
+# obj1= main("A Green Apple")
 # print(obj1.firstNonRepetitiveChar())
 # obj1.mod()
 
 # print('------------------')
-# obj2= main(["The Just Judge"])
+# obj2= main("The Just Judge")
 # print(obj2.firstNonRepetitiveChar())
 # obj2.mod()
 
 # print('------------------')
-# obj3= main(["A Just Judgement"])
+# obj3= main("A Just Judgement")
 # print(obj3.firstNonRepetitiveChar())
 # obj3.mod()
 
 # print('------------------')
-# obj4= main(["A J"])
+# obj4= main("A J")
 # print(obj4.firstNonRepetitiveChar())
 # obj4.mod()
 
 # print('------------------')
-# obj5= main(["The The "])
+# obj5= main("The The ")
 # print(obj5.firstNonRepetitiveChar())
 # obj5.mod()
 
@@ -153,9 +149,9 @@ def firstNonRepetitiveChar(args: str):
     listItmes= list(dictionary.items())
     for item in listItmes:
         if item[1] == 1:
-            return item[0]
+            return f"the first Non-repetitive characters in the string of '{string}': {item[0]}"
 
-    return f"there is no Non-repetitive characters at the: '{string}'"
+    return f"all of the characters are repeated more than one time in the string of '{string}'"
 
 
 # solution 3:
@@ -176,9 +172,9 @@ def firstNonRepetitiveChar(args: str):
 
 #     for i in range(0, len(listKeys)):
 #         if listVals[i] == 1:
-#             return listKeys[i]
+#             return f"the first Non-repetitive characters in the string of '{string}': {listKeys[i]}"
     
-#     return f"there is no Non-repetitive characters at the: '{string}'"
+    # return f"all of the characters are repeated more than one time in the string of '{string}'"
 
 
 print(firstNonRepetitiveChar("A Green Apple"))
