@@ -81,10 +81,22 @@ obj4= main("A I")
 print(obj4.findFirstRepeatedChar())
 
 
-# ================================ solution 2 ====================
-# solution 2: using with function statement
+# ================================ solution 3 ====================
+# solution 3: using with function statement and one loop
+# def findFirstRepeatedChar(string: str):
+#     charSet= set()
+#     for item in string:
+#         if charSet.__contains__(item):
+#             return item 
 
-# def firstCharMoreRepeatOne(string: str):
+#         charSet.add(item)
+        
+#     return f"all of the characters are repeated one time in the string of '{string}'"
+    
+
+# ================================ solution 4 ====================
+# solution 4: using with function statement and two loops
+# def findFirstRepeatedChar(string: str):
 #     argList= list(string)
 #     charsSet= set()
 
@@ -96,12 +108,17 @@ print(obj4.findFirstRepeatedChar())
 #     for item in charsSet:
 #         argList.remove(item)
 
-#     firstItem= argList[0]
-#     firstItemIndex= setList.index(firstItem)
+#     try:
+#         firstItem= argList[0]
+#         firstItemIndex= setList.index(firstItem)
+#     except IndexError:
+#         return f"all of the characters are repeated one time in the string of '{string}'"
+#     else:
+#         return setList[firstItemIndex]
 
-#     return setList[firstItemIndex]
 
-# print(firstCharMoreRepeatOne("the green apple"))
-# print(firstCharMoreRepeatOne("Just Judge"))
-# print(firstCharMoreRepeatOne("Just judgement"))
+# print(findFirstRepeatedChar("the green apple"))
+# print(findFirstRepeatedChar("Just Judge"))
+# print(findFirstRepeatedChar("Just judgement"))
+# print(findFirstRepeatedChar("A I"))
 
