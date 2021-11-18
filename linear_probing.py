@@ -1,4 +1,5 @@
-# ========================================== implementation open addressing algorithm ================================
+# ========================================== implementation open addressing algorithm,linear probing, ================================
+
 
 class hash:
     def __init__(self, dictSize: int):
@@ -20,17 +21,17 @@ class hash:
 
     def __linearProbing(self, pair):
         length= len(self.__list)
+
         for i in range(0, length):
             arrayIndex= self.__hashFunction(pair[0]) + i
 
-            if arrayIndex in range(0, length):
-                if self.__list[arrayIndex] == 0:
-                    self.__list[arrayIndex]= pair
+            if arrayIndex in range(0, length) and self.__list[arrayIndex] == 0:
+                self.__list[arrayIndex]= pair
 
-            if arrayIndex >= length:
-                arrayIndex %= length
-                if self.__list[arrayIndex] == 0:
-                    self.__list[arrayIndex]= pair
+            # if arrayIndex >= length: # if we want to solve the first problem of the linear probing, we can use these codes
+            #     arrayIndex %= length
+            #     if self.__list[arrayIndex] == 0:
+            #         self.__list[arrayIndex]= pair
     '''
     the linear probing drawbacks:
     1. this algorithm must be traverse all of the indexes of the array to if it not found an empty index come out
@@ -40,7 +41,10 @@ class hash:
 
     @property
     def Dict(self):
-        return dict(self.__list)
+        try:
+            return dict(self.__list)
+        except TypeError:
+            return self.__list
 
 
     @Dict.setter
