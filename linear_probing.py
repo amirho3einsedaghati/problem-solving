@@ -34,8 +34,8 @@ class hash:
             #         self.__list[arrayIndex]= pair
     '''
     the linear probing drawbacks:
-    1. this algorithm must be traverse all of the indexes of the array to if it not found an empty index come out
-    2. cluster -> to reach an empty index may need to be traversed all of the indexes of the array
+    1. this algorithm must be traverse all of the indexes of the array to if it not found an empty index come out.
+    2. cluster -> to reach an empty index may need to be traversed a lot of indexes of the array beacause is created a cluster of the full indexes.  
     '''
 
 
