@@ -1,4 +1,4 @@
-# ========================================== implementation open addressing algorithm,quadratic probing, ================================
+# ========================================== implementation open addressing algorithm,2. quadratic probing, ================================
 
 
 class hash:
@@ -27,8 +27,9 @@ class hash:
 
             if self.__list[arrayIndex] == 0:
                 self.__list[arrayIndex]= pair
+                break     
     '''
-    the algorithm doesn't have the drawback of clustering overally.
+    the algorithm doesn't have the drawback of the clustering overally.
     
     the quadratic probing drawback:
     this algorithm not find overally the chance of traversing some of indexes of the array.
@@ -61,7 +62,6 @@ obj1= hash(5)
 obj1.fillDict= (1,"amir")
 obj1.fillDict= (2,"reza")
 obj1.fillDict= (3,"saman")
-obj1.fillDict= (4,"ali")
 obj1.fillDict= (12,"zahra")
 print(obj1.Dict)
 
