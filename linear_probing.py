@@ -7,7 +7,7 @@ class hash:
         self.__list= [0] * dictSize
 
 
-    def __hashFunction(self, key: int|str):
+    def __hashFunction1(self, key: int|str):
         if type(key) is str:
             arrayIndexKey= key.__hash__() % self.__dictionarySize
             return arrayIndexKey
@@ -23,15 +23,10 @@ class hash:
         length= len(self.__list)
 
         for i in range(0, length):
-            arrayIndex= self.__hashFunction(pair[0]) + i
+            arrayIndex= (self.__hashFunction1(pair[0]) + i) % length
 
-            if arrayIndex in range(0, length) and self.__list[arrayIndex] == 0:
+            if self.__list[arrayIndex] == 0:
                 self.__list[arrayIndex]= pair
-
-            # if arrayIndex >= length: # if we want to solve the first problem of the linear probing, we can use these codes
-            #     arrayIndex %= length
-            #     if self.__list[arrayIndex] == 0:
-            #         self.__list[arrayIndex]= pair
     '''
     the linear probing drawbacks:
     1. this algorithm must be traverse all of the indexes of the array to if it not found an empty index come out.
@@ -49,7 +44,7 @@ class hash:
 
     @Dict.setter
     def fillDict(self, pair: tuple):
-        arrayIndexKey= self.__hashFunction(pair[0])
+        arrayIndexKey= self.__hashFunction1(pair[0])
 
         if self.__list[arrayIndexKey] == 0:
             self.__list[arrayIndexKey]= pair
