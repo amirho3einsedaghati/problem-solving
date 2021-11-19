@@ -1,4 +1,4 @@
-# ========================================== implementation open addressing algorithm,linear probing, ================================
+# ========================================== implementation open addressing algorithm,1. linear probing, ================================
 
 
 class hash:
@@ -27,6 +27,7 @@ class hash:
 
             if self.__list[arrayIndex] == 0:
                 self.__list[arrayIndex]= pair
+                break
     '''
     the linear probing drawbacks:
     1. this algorithm must be traverse all of the indexes of the array to if it not found an empty index come out.
