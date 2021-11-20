@@ -38,6 +38,12 @@ class HashTable:
                 self.__lisTuple.extend(item.getKeyValue())
 
 
+    def Dict(self):
+        self.__setlistofTuple()
+
+        return dict(self.__lisTuple)
+        
+
     def __getlistofTuple(self):
         self.__setlistofTuple()
 
@@ -67,23 +73,20 @@ class HashTable:
 
 
     def update(self, key, value):
-   
-	    # self.__size += 1  # 1. Increment size
 
-	    index = self.__hashFunction(key) # 2. Compute index of key
+	    index = self.__hashFunction(key) # Compute index of key
 
 	    nodeLL = self.__buckets[index]
 	
-	    if nodeLL is None: # 3. If bucket is empty:
+	    if nodeLL is None: # If bucket is empty:
 		    self.__buckets[index] = Node(key, value) # Create node, add it, return
 		    return
         
-	    while nodeLL is not None: # 4. Collision! Iterate to the end of the linked list at provided index
-		    lastNode = nodeLL
+	    while nodeLL is not None: # Collision! Iterate to the end of the linked list at provided index
+		    currentNode = nodeLL
 		    nodeLL = nodeLL._Node__address 
-    
-    
-	    lastNode._Node__address = Node(key, value) 	# Add a new node at the end of the list with provided key/value
+
+	    currentNode._Node__address = Node(key, value) # Add a new node at the end of the list with provided key/value
 
 
     def getValue(self, key):
@@ -99,12 +102,12 @@ class HashTable:
             targetItem= targetItem._Node__address
 
         return curentNode._Node__value 
-    
+
 
 # ========================================== create some objects ================================
     
 
-obj= HashTable(7)
+obj= HashTable(7) # in the maximum state can keeps two more non-repetitive items than it can hold; for example if capacityBucket be 7, it can keeps up to 9 items  
 obj.update(1, "a")
 obj.update(22, "b")
 obj.update(2, 'd')
@@ -122,3 +125,5 @@ x= obj.getlistOfList()
 print(x)
 
 print(obj.getValue(1))
+
+print(obj.Dict())
