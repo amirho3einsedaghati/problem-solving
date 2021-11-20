@@ -31,26 +31,21 @@ class HashTable:
         self.__lisTuple= []
 
 
-    def __setlistofTuple(self):
+    def __getlistofTuple(self):
         for item in self.__buckets:
 
             if type(item) == Node:
                 self.__lisTuple.extend(item.getKeyValue())
+        
+        return self.__lisTuple
 
 
     def Dict(self):
-        self.__setlistofTuple()
-
         return dict(self.__lisTuple)
         
-
-    def __getlistofTuple(self):
-        self.__setlistofTuple()
-
-        return self.__lisTuple
         
 
-    def getlistOfList(self): # this method has came beacause see what self.__buckets looks like
+    def __getlistOfList(self): # this method has came beacause see what self.__buckets looks like
         lis= self.__getlistofTuple()
 
         liLi= [0] * self.__capacity
@@ -73,11 +68,9 @@ class HashTable:
 
 
     def update(self, key, value):
-
 	    index = self.__hashFunction(key) # Compute index of key
-
 	    nodeLL = self.__buckets[index]
-	
+
 	    if nodeLL is None: # If bucket is empty:
 		    self.__buckets[index] = Node(key, value) # Create node, add it, return
 		    return
@@ -92,16 +85,40 @@ class HashTable:
     def getValue(self, key):
         index= self.__hashFunction(key)
 
-        targetItem= self.__buckets[index]
+        targetNode= self.__buckets[index]
 
-        if targetItem._Node__address == None:
-            return targetItem._Node__value 
+        if targetNode == None:
+            return
 
-        while targetItem != None:
-            curentNode= targetItem
-            targetItem= targetItem._Node__address
+        elif targetNode._Node__address == None:
+            return targetNode._Node__value 
+
+        while targetNode != None:
+            curentNode= targetNode
+            targetNode= targetNode._Node__address
 
         return curentNode._Node__value 
+
+
+    def remove(self, key):
+        index= self.__hashFunction(key)
+
+        targetNode= self.__buckets[index]
+
+        while targetNode._Node__address != None:
+            targetNode= targetNode._Node__address
+
+        dictionary= dict(self.__lisTuple)
+
+        listDict= list(dictionary.items())
+
+        for tuple in listDict:
+            if tuple[1] == targetNode._Node__value:
+                listDict.remove(tuple)
+                self.__lisTuple= listDict
+                break
+
+        return targetNode._Node__value
 
 
 # ========================================== create some objects ================================
@@ -121,9 +138,13 @@ obj.update(7, 'k')
 
 print(obj.getValue(5))
 
-x= obj.getlistOfList()
+x= obj._HashTable__getlistOfList()
 print(x)
 
-print(obj.getValue(1))
+print(obj.getValue(0))
 
+print(obj.Dict())
+
+print(obj.remove(1))
+print(obj.remove(2))
 print(obj.Dict())
