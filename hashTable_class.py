@@ -47,8 +47,8 @@ class HashTable:
                 if (item[0] != tup[0][0] and item[1] != tup[0][1]) or (item[0] != tup[0][0] and item[1] == tup[0][1]):
                     tup.append(item)
 
-        self.__buckets= li
-        return self.__buckets
+        
+        return li
 
 
     def __hashFunction(self, key):
@@ -73,7 +73,22 @@ class HashTable:
     
     
 	    lastNode._Node__address = Node(key, value) 	# Add a new node at the end of the list with provided key/value
-        
+
+
+    def getValue(self, key):
+        index= self.__hashFunction(key)
+
+        targetItem= self.__buckets[index]
+
+        if targetItem._Node__address == None:
+            return targetItem._Node__value 
+
+        while targetItem != None:
+            curentNode= targetItem
+            targetItem= targetItem._Node__address
+
+        return curentNode._Node__value 
+    
 
 # ========================================== create some objects ================================
     
@@ -90,7 +105,9 @@ obj.update(6, 'f')
 obj.update(21,'z')
 obj.update(7, 'k')
 
+print(obj.getValue(5))
+
 x= obj.getBuckets()
 print(x)
 
-
+print(obj.getValue(1))
