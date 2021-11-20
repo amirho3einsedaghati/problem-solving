@@ -28,27 +28,38 @@ class HashTable:
     def __init__(self, capacityBucket):
         self.__capacity= capacityBucket
         self.__buckets= [None] * self.__capacity
+        self.__lisTuple= []
 
 
-    def getBuckets(self):
-        lis= []
+    def __setlistofTuple(self):
         for item in self.__buckets:
-            if type(item) == Node:
-                lis.extend(item.getKeyValue())
 
-        li= [0] * self.__capacity
+            if type(item) == Node:
+                self.__lisTuple.extend(item.getKeyValue())
+
+
+    def __getlistofTuple(self):
+        self.__setlistofTuple()
+
+        return self.__lisTuple
+        
+
+    def getlistOfList(self): # this method has came beacause see what self.__buckets looks like
+        lis= self.__getlistofTuple()
+
+        liLi= [0] * self.__capacity
+
         for item in lis:
             index= self.__hashFunction(item[0])
-            if li[index] == 0:
-                li[index]= [item]
+
+            if liLi[index] == 0:
+                liLi[index]= [item]
 
             else:
-                tup= li[index] 
-                if (item[0] != tup[0][0] and item[1] != tup[0][1]) or (item[0] != tup[0][0] and item[1] == tup[0][1]):
-                    tup.append(item)
+                tup= liLi[index] 
+                tup.append(item)
 
-        
-        return li
+        return liLi
 
 
     def __hashFunction(self, key):
@@ -107,7 +118,7 @@ obj.update(7, 'k')
 
 print(obj.getValue(5))
 
-x= obj.getBuckets()
+x= obj.getlistOfList()
 print(x)
 
 print(obj.getValue(1))
