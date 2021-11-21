@@ -2,7 +2,7 @@
 # problem: create a program that contains an algorithm for returning the first Non-repetitive characters and an algorithm for returning mod.
 
 
-# solution 1:
+# # solution 1:
 # class main:
 #     def __init__(self, args= str):
 #         self.__args= args
@@ -20,13 +20,13 @@
 
 #     def __convertDictItmes(self):
 #         dictionary= self.__createDictWithArgs()
-#         dictItems= list(dictionary.items())
-#         return dictItems
+#         listOfItems= list(dictionary.items())
+#         return listOfItems
 
 
 #     def __convertDictVal(self, dictVal):
-#         dictVal= list(dictVal)
-#         return dictVal
+#         ListOfVal= list(dictVal)
+#         return ListOfVal
 
 
 #     def __countCharacters(self):
@@ -35,14 +35,14 @@
 #         listItems= self.__convertDictItmes()
 
 #         dictVal= dictionary.values()
-#         dictVal= self.__convertDictVal(dictVal)
-#         lenght= len(dictVal)
+#         ListOfVal= self.__convertDictVal(dictVal)
+#         lenght= len(ListOfVal)
 #         countEachCharList= [0] * lenght
 
 #         for i in range(0, len(listItems)):
 #             if listItems[i][1] == string[i]:
 #                 popVal= dictionary.pop(listItems[i][0])
-#                 popValIndex= dictVal.index(popVal)
+#                 popValIndex= ListOfVal.index(popVal)
 #                 countEachCharList[popValIndex] += 1
 
 #         return countEachCharList
@@ -51,12 +51,12 @@
 #     def firstNonRepetitiveChar(self):
 #         dictionary= self.__createDictWithArgs()
 #         dictVal= dictionary.values()
-#         dictVal= self.__convertDictVal(dictVal)
+#         ListOfVal= self.__convertDictVal(dictVal)
 #         countChars= self.__countCharacters()
         
 #         for i in range(0, len(countChars)):
 #             if countChars[i] == 1:
-#                 return f"the first Non-repetitive characters: {dictVal[i]}"
+#                 return f"the first Non-repetitive characters: {ListOfVal[i]}"
 
 #         return f"all of the characters are repeated more than one time in the string of '{self.__args}'"
 
@@ -66,7 +66,7 @@
 #         # if we want to show the all of the mods, we should using this solution:
 #         dictionary= self.__createDictWithArgs()
 #         dictVal= dictionary.values()
-#         dictVal= self.__convertDictVal(dictVal)
+#         ListOfVal= self.__convertDictVal(dictVal)
 #         countChars= self.__countCharacters()
 
 #         li= [0]
@@ -80,8 +80,8 @@
 #         modList= []
 #         for item in li:
 #             index= countChars.index(item)
-#             modList.append(dictVal[index])
-#             dictVal.pop(index)
+#             modList.append(ListOfVal[index])
+#             ListOfVal.pop(index)
 
 #         for item in modList:
 #             if item == modList[0]:
@@ -98,7 +98,7 @@
 #         # if we want to show,the first value of the mod, we should using the following solution:
 #         # maximum=max(countChars)
 #         # indexMax= countChars.index(maximum)
-#         # return f"mode '{self.__args}': {dictVal[indexMax]}"
+#         # return f"mode '{self.__args}': {ListOfVal[indexMax]}"
 
 
 
