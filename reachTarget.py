@@ -25,7 +25,7 @@ def reachTarget(li: list[int], target: int):
 
             print(indicesList, end= " ")
 
-            copy= indicesList.copy
+            copy= indicesList.copy()
             indicesList.clear()
 
     if copy == None:
