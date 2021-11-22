@@ -24,7 +24,7 @@ class Node:
         return li
 
 
-class HashTable:
+class HashTableWithChaining:
     def __init__(self, capacityBucket):
         self.__capacity= capacityBucket
         self.__buckets= [None] * self.__capacity
@@ -133,7 +133,7 @@ class HashTable:
 # ========================================== create some objects ================================
     
 
-obj= HashTable(7) # in the maximum state can keeps two more non-repetitive items than it can hold; for example if capacityBucket be 7, it can keeps up to 9 items  
+obj= HashTableWithChaining(7) # in the maximum state can keeps two more non-repetitive items than it can hold; for example if capacityBucket be 7, it can keeps up to 9 items  
 obj.update(1, "a")
 obj.update(22, "b")
 obj.update(2, 'd')
@@ -147,7 +147,7 @@ obj.update(7, 'k')
 
 print(obj.getValue(5))
 
-x= obj._HashTable__getlistOfList()
+x= obj._HashTableWithChaining__getlistOfList()
 print(x)
 
 print(obj.getValue(0))
