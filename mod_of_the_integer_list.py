@@ -39,24 +39,22 @@ def mod(args: list[int]):
         setCount= set(listEqualCount)
         listEqualCount= list(setCount)
 
+        print(f"the mod of {args} is:", end= ' ')
+
         for item in listEqualCount:
-            
-            if item == listEqualCount[0]:
-                print(f"the mod item is: {item}", end= " | ")
-            
+
+            if listEqualCount[0] <= item < listEqualCount[len(listEqualCount) - 1]:
+                print(item, end= " | ")
+
             elif item == listEqualCount[len(listEqualCount) - 1]:
-                print(f"the mod item is: {item}", end= "\n")
-
-            else:
-                print(f"the mod item is: {item}", end= " | ")
-
+                print(item, end= "\n")
 
     elif countRepeated == 1:
         print("None of the items are not mod")
 
     else:
         indexCountRepeatedItem= listOfValues.index(countRepeated)
-        print(f"the mod item is: {listOfItems[indexCountRepeatedItem][0]}")
+        print(f"the mod of {args} is: {listOfItems[indexCountRepeatedItem][0]}")
 
 
 
