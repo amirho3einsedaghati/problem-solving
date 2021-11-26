@@ -5,13 +5,16 @@
 
 
 def countPairsWithKdistances(li: list[int], k: int):
+    # big O: O(n)
     countPairs= 0
     arg= li
+
     arg= set(arg)
     uniqueList= list(arg)
 
     for item in uniqueList:
         item += k
+        
         if item in uniqueList:
             countPairs += 1
 
