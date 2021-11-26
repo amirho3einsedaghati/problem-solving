@@ -4,6 +4,7 @@
 
 
 def mod(args: list[int]):
+    # big O: O(n)
     li= [0] * len(args)
     dictionary= dict()
 
