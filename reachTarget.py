@@ -5,9 +5,9 @@
 
 
 def reachTarget(li: list[int], target: int):
-
+    # big O: O(n)
     uniqueList= list()
-    
+
     for item in li:
         if item not in uniqueList:
             uniqueList.append(item)
@@ -20,6 +20,7 @@ def reachTarget(li: list[int], target: int):
 
         if reachTargetVal in uniqueList and i > uniqueList.index(reachTargetVal):
             reachTargetIndex= uniqueList.index(reachTargetVal)
+            
             indicesList.append(reachTargetIndex)
             indicesList.append(i)
 
