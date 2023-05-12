@@ -1,4 +1,5 @@
 # problem-solving
+[![GitHub](https://img.shields.io/github/license/amirho3einsedaghati/problem-solving?color=yellow)](https://github.com/amirho3einsedaghati/problem-solving/blob/master/LICENSE)
 [![GitHub repo size](https://img.shields.io/github/repo-size/amirho3einsedaghati/problem-solving?color=red)](https://github.com/amirho3einsedaghati/problem-solving/)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/amirho3einsedaghati/problem-solving?color=yellow)](https://github.com/amirho3einsedaghati/problem-solving/pulls)
 [![GitHub issues](https://img.shields.io/github/issues-raw/amirho3einsedaghati/problem-solving?color=red)](https://github.com/amirho3einsedaghati/problem-solving/issues)
